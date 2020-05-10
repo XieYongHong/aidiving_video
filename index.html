@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aidiving</title>
+    <link rel="stylesheet" href="./css/zui.min.css">
+    <link rel="stylesheet" href="./css/iconfont.css">
+    <link rel="stylesheet" href="./css/aidriving_video.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="aidriving">
+        <div class="left">
+            <a href="#" target="_blank" >点击此处查看API文档</a>
+            <div class="rows">
+                <div class="cols">
+                    <label>资源URL地址</label>
+                    <input id='url'/>
+                </div>
+                <div class="cols">
+                    <label>客户秘钥</label>
+                    <input id='secret_key'/>
+                </div>
+                <div class="cols">
+                    <label>视频类型</label>
+                    <div class="select">
+                        <select class="form-control" id='video_type'>
+                            <option value="0">视频直播</option>
+                            <option value="1">视频回放</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button class="btn" type="button" id="establish_connection">建立连接</button>
+                    <button class="btn" type="button" id="close_connection">断开连接</button>
+                </div>
+            </div>
+            <hr />
+            <div class="rows">
+                <div class="cols broadcast">
+                    <label>画面样式</label>
+                    <div class="select">
+                        <select class="form-control" id='passageway'>
+                            <option value="1">1</option>
+                            <option value="4">4</option>
+                            <option value="6">6</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="16">16</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cols broadcast">
+                    <label>自动停止</label>
+                    <div class="select">
+                        <select class="form-control" id='autoClose'>
+                            <option value="0">从不</option>
+                            <option value="1">5分钟</option>
+                            <option value="2">10分钟</option>
+                            <option value="3">30分钟</option>
+                            <option value="4">60分钟</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cols">
+                    <label>SIM卡号</label>
+                    <input id='sim_number'/>
+                </div>
+                <div class="cols">
+                    <label>通道号</label>
+                    <input id='passageway_number'/>
+                </div>
+                <div class="cols playback" style="display: none;">
+                    <label>开始时间</label>
+                    <input id='start_time'/>
+                </div>
+                <div class="cols playback" style="display: none;">
+                    <label>结束时间</label>
+                    <input id='end_time'/>
+                </div>
+                <div class="btns btns-status">
+                    <button class="btn" type="button" id="play">播放</button>
+                    <button class="btn" type="button" id="stop">停止</button>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="video-content video-passageway-1">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/zui.min.js"></script>
+    <script src="./js/flv.min.js"></script>
+    <script src="./js/aidriving_video.js"></script>
+    <script>
+        
+
+        $('#video_type').on('change', function() {
+            var val = $(this).val()
+            if(val === '0') { // 直播
+                $('.broadcast').show()
+                $('.playback').hide()
+            } else { // 回放
+                $('.playback').show()
+                $('.broadcast').hide()
+
+                $('#start_time').val(getTime().substring(0,11) + '00:00:00')
+                $('#end_time').val(getTime())
+            }
+        })
+
+        $('#passageway').on('change', function() {
+            var val = $(this).val()
+            aidrivingPlayer.updatePassageway(val)
+            $(this).blur();
+        })
+        
+        $('#autoClose').on('change', function() {
+            var val = $(this).val()
+        })
+
+        $('#establish_connection').click(function() {
+            var url = $('#url').val()
+            var secretKey = $('#secret_key').val()
+            var simNumber = $('#sim_number').val()
+            var passagewayNumber = $('#passageway_number').val()
+            var startTime = $('#start_time').val()
+            var endTime = $('#end_time').val()
+            var playType = $('#video_type').val()
+            
+            aidrivingPlayer.createVideos({
+                url: url,
+                secretKey: secretKey,
+                simNumber: simNumber,
+                passagewayNumber: passagewayNumber,
+                startTime: startTime,
+                endTime: endTime,
+                vehicleNumber: '',
+                playType: playType === '0' ? 'broadcast' : 'playback'
+            })
+            
+            $('.btns-status').css({
+                display: 'flex'
+            })
+            
+            $('#video_type').attr('disabled', 'disabled')
+        })
+
+        $('#close_connection').click(function() {
+            console.log('断开连接')
+            $('#video_type').attr('disabled', false)
+            $('.btns-status').hide()
+            aidrivingPlayer.cleanVideo()
+        })
+
+        $('#play').click(function() {
+            console.log('播放')
+            aidrivingPlayer.playAll()
+        })
+
+        $('#stop').click(function() {
+            console.log('暂停')
+            aidrivingPlayer.stopAll()
+        })
+
+
+        function getTime() {
+            var date = new Date()
+            var year = date.getFullYear() + ''
+            var mounth = date.getMonth() + 1
+            var day = date.getDate()
+            var hour = date.getHours()
+            var min = date.getMinutes()
+            var sec = date.getSeconds()
+
+            function handleValue(time) {
+                return time > 9 ? time + '' : '0' + time
+            }
+            return year + '-' + handleValue(mounth) + '-' + handleValue(day) + ' ' + handleValue(hour) + ':' + handleValue(min) + ':' + handleValue(sec)
+        }
+    </script>
+</body>
+</html>
