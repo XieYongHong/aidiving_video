@@ -26,8 +26,8 @@
                     <label>视频类型</label>
                     <div class="select">
                         <select class="form-control" id='video_type'>
-                            <option value="0">视频直播</option>
-                            <option value="1">视频回放</option>
+                            <option value="broadcast">视频直播</option>
+                            <option value="playback">视频回放</option>
                         </select>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <hr />
-            <div class="rows">
+            <div class="rows video-params">
                 <div class="cols broadcast">
                     <label>画面样式</label>
                     <div class="select">
@@ -67,10 +67,10 @@
                     <label>SIM卡号</label>
                     <input id='sim_number'/>
                 </div>
-                <div class="cols">
+                <!-- <div class="cols">
                     <label>通道号</label>
                     <input id='passageway_number'/>
-                </div>
+                </div> -->
                 <div class="cols playback" style="display: none;">
                     <label>开始时间</label>
                     <input id='start_time'/>
@@ -126,21 +126,12 @@
         $('#establish_connection').click(function() {
             var url = $('#url').val()
             var secretKey = $('#secret_key').val()
-            var simNumber = $('#sim_number').val()
-            var passagewayNumber = $('#passageway_number').val()
-            var startTime = $('#start_time').val()
-            var endTime = $('#end_time').val()
             var playType = $('#video_type').val()
             
             aidrivingPlayer.createVideos({
                 url: url,
                 secretKey: secretKey,
-                simNumber: simNumber,
-                passagewayNumber: passagewayNumber,
-                startTime: startTime,
-                endTime: endTime,
-                vehicleNumber: '',
-                playType: playType === '0' ? 'broadcast' : 'playback'
+                playType: playType,
             })
             
             $('.btns-status').css({
@@ -148,18 +139,30 @@
             })
             
             $('#video_type').attr('disabled', 'disabled')
+            $('.video-params').show()
         })
 
         $('#close_connection').click(function() {
             console.log('断开连接')
             $('#video_type').attr('disabled', false)
             $('.btns-status').hide()
+            $('.video-params').hide()
             aidrivingPlayer.cleanVideo()
         })
 
         $('#play').click(function() {
             console.log('播放')
-            aidrivingPlayer.playAll()
+            var simNo = $('#sim_number').val()
+            // var passagewayNumber = $('#passageway_number').val()
+            var startTime = $('#start_time').val()
+            var endTime = $('#end_time').val()
+
+            aidrivingPlayer.playAll({
+                simNo: simNo,
+                // passagewayNumber: passagewayNumber,
+                startTime: startTime,
+                endTime: endTime,
+            })
         })
 
         $('#stop').click(function() {

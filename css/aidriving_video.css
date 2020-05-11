@@ -3,6 +3,8 @@
     height: 100%;
     display: grid;
     overflow: hidden;
+    font-size: 14px;
+    position: relative;
 }
 
 .video-content .video-scale {
@@ -12,6 +14,8 @@
 .video-content .video-body {
     height: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .video-content .loading, 
@@ -38,20 +42,18 @@
 }
 
 .video-content .video {
-    object-fit: fill;
     width: 100%;
     object-fit: fill;
-    margin: 0 auto;
 }
 
 .video-content .tool-bar {
     height: 28px;
-    line-height: 28px;
     background-color: #222;
     color: #f2f2f2;
     display: flex;
     position: relative;
     justify-content: center;
+    align-items: center;
 }
 
 .video-content .tool-bar .iconfont {
@@ -89,6 +91,22 @@
 
 .video-content .tool-bar .iconfont:hover {
     color: #fff;
+}
+
+.video-playback .iconplay,
+.video-playback .iconstop {
+    display: none;
+}
+
+.video-playback .vehicle-number,
+.video-playback .passageway-number
+{
+    position: absolute;
+    left: 15px;
+}
+
+.video-playback .passageway-number {
+    left: 200px;
 }
 
 .video-content .loading {
@@ -186,6 +204,31 @@
     grid-column-end: 5 !important;
     grid-row-start: 1 !important;
     grid-row-end: 5 !important;
+}
+
+.videolist-tip-text {
+    display: none;
+    position: absolute;
+    background-color: rgba(0,0,0,.6);
+    color: #fff;
+    border-radius: 2px;
+    padding: 12px 25px;
+    text-align: center;
+    line-height: 24px;
+    word-break: break-all;
+    font-size: 14px;
+    min-width: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+}
+
+#tip_text_1 {
+    top: 10%;
+}
+#tip_text_3 {
+    top: calc(50% - 60px);
 }
 
 @keyframes video-rotate {

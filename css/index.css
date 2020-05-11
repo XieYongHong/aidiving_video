@@ -84,3 +84,6 @@ body,html {
     margin-left: 20px;
 }
 
+.video-params {
+    display: none;
+}

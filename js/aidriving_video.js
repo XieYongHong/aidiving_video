@@ -12,11 +12,11 @@ var videoPlayr = function (options) {
 
     this.sim = options.sim || ''
     this.passageway = options.passageway || 1
-    this.vehicleNumber = options.vehicleNumber
     this.playStatus = 0 // 0：停止； 1：播放； 2：暂停；
     this.autoCloseTimer = null   // 计时器对象
     this.autoCloseTime = 5 * 60 * 1000   // 自动关闭视频时间; 默认五分钟
-    this.src = 'https://d1--cn-gotcha04.bilivideo.com/live-bvc/166327/live_22970615_2315801.flv?cdn=cn-gotcha04&expires=1589101951&len=0&oi=1784476863&pt=web&qn=10000&trid=e2e0b7827486415b8716b6048d00bdd7&sigparams=cdn,expires,len,oi,pt,qn,trid&sign=bae6cda41979ee41c4b926f0ce462c3e&ptype=0&platform=web&pSession=M8s1YA4K-sdFw-4aM2-bMx2-EJQmsiiZSrpw'
+    this.getVideoUrl = options.getVideoUrl
+    this.type = options.playType || 'broadcast'
     this.video = null
     this.videoClassName = '.passageway-' + this.passageway
 }
@@ -38,7 +38,7 @@ videoPlayr.prototype.init = function () {
 }
 videoPlayr.prototype.createElement = function () {
     var _this = this
-    var videoDOM = `<div class="video-body passageway-${this.passageway}">
+    var videoDOM = `<div class="video-body passageway-${this.passageway} video-${this.type}">
                         <video src="" class="video video-scale" id="video${this.passageway}" muted autoplay></video>
                         <div class="video-bgImg video-scale"></div>
                         <div class="loading video-scale hide-loading">
@@ -47,7 +47,7 @@ videoPlayr.prototype.createElement = function () {
                         <div class="tool-bar">
                             <span title="播放" class="iconfont iconplay" data-type="1"></span>
                             <span title="停止" class="iconfont iconstop" data-type="2"></span>
-                            <span class="vehicle-number">${this.vehicleNumber}</span>
+                            <span class="vehicle-number"></span>
                             <span class="passageway-number">通道 ${this.passageway}</span>
                             <span title="截屏" class="iconfont iconscreenshots" data-type="3"></span>
                             <span title="全屏" class="iconfont iconfull-screen" data-type="4"></span>
@@ -66,7 +66,6 @@ videoPlayr.prototype.tooBtnInit = function () {
 
     $(className + ' .tool-bar').on('click', '.iconfont', function () {
         var type = $(this).data('type')
-        console.log(type)
         var videoBody = $(this).parents('.video-body')[0]
         var videoDOM = $(className + ' .video')[0]
         switch (type) {
@@ -87,6 +86,11 @@ videoPlayr.prototype.tooBtnInit = function () {
                 if($(this).hasClass('iconun-full-screen')) {
                     _this.exitFullscreen()
                 } else {
+                    var dom = $('#.tip_text_1')
+                    dom.show()
+                    setTimeout(function() {
+                        dom.hide()
+                    }, 1500)
                     _this.fullScreen(videoBody)
                 }
                 _this.fullScreenChangeType()
@@ -96,19 +100,19 @@ videoPlayr.prototype.tooBtnInit = function () {
         }
     })
 }
-videoPlayr.prototype.createPlayer = function () {
+videoPlayr.prototype.createPlayer = function (src) {
     var videoElement = document.querySelector('#video' + this.passageway)
-    console.log(videoElement)
+
     var _this = this
 
-    if (videoElement && this.src) {
+    if (videoElement && src && !this.video) {
         this.video = flvjs.createPlayer({
             type: 'flv',
             isLive: true,
             hasAudio: false,
             hasVideo: true,
             controls: true,
-            url: _this.src
+            url: src
         })
 
         videoElement.addEventListener('canplay', function (e) {
@@ -127,16 +131,15 @@ videoPlayr.prototype.createPlayer = function () {
     }
 }
 videoPlayr.prototype.play = function () {
-    console.log(this.video)
-    if(this.video) {
-        // this.video.play()
-    } else {
-        this.createPlayer()
+    if(this.getVideoUrl) {
+        this.getVideoUrl(this.passageway)
     }
 }
-videoPlayr.prototype.stop = function () { // 暂停
+videoPlayr.prototype.pause = function () { // 暂停
     if(this.video) {
         this.video.pause()
+        this.hideLoading()
+        this.showMask()
     }
 }
 videoPlayr.prototype.destroy = function () {
@@ -169,6 +172,14 @@ videoPlayr.prototype.timeout = function () {  // 超时计时器
 
     this.timer = setTimeout(function () {
         // 显示超时提示 
+        var dom = $('#tip_text_2')
+        var status = dom.is(":hidden")
+        if(status) {
+            dom.show()
+            setTimeout(function() {
+                dom.hide()
+            }, 2000)
+        }
         _this.hideLoading()
         _this.stop()
     }, 15000)
@@ -202,7 +213,10 @@ videoPlayr.prototype.downloadImage = function (base64) {
     var filename = this.sim + "_" + this.getTime() + "." + type; //下载图片的文件名
 
     this.saveFile(imgData, filename);
-}
+},
+videoPlayr.prototype.updateVehicleNo = function(value) {
+    $(this.videoClassName + ' .vehicle-number').val(value)
+},
 videoPlayr.prototype.getTime = function () {
     var date = new Date()
     var year = date.getFullYear() + ''
@@ -277,83 +291,71 @@ videoPlayr.prototype.fullScreenChangeType = function (callback) {
 
 var aidrivingPlayer = {
     videoList: [],
-    url: '',
-    channelId: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
     channels: '',
     sessionId: '',
     simNo: '',
-    query: function() {
+    tipTimer: null,
+    vehicleNo: '',
+    playType: 'broadcast',
+    url: 'http://localhost:1080/broadCast/getBroadCastAddress',
+    bateUrl: 'http://localhost:1080/broadCast/heartBeat',
+    getVehicleNoUrl: 'http://localhost:1080/gpsroot/vehicle/getPlateNoByVehic',
+    playbackTimelineUrl:'http://localhost:1080/gpsroot/videoPlayBack/sendVideoCommand',
+    getVehicleNo: function() {
         var _this = this
-        var url = "broadCast/getBroadCastAddress";
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            contentType: 'a',
+            url: _this.getVehicleNoUrl,
+            data: JSON.stringify({"simNo": _this.simNo}),
+            error: function(){},
+            success: function(data) {
+                if (data.code == 1000) {
+                    _this.vehicleNo = data.data
+                    _this.updateVehicleNo(data.data)
+                }
+            }
+        })
+    },
+    getVideoUrl: function(ids) {
+        var _this = this
         $.ajax({
             dataType: "json",
             type: "POST",
             contentType: "application/json;charset-UTF-8",
-            url: url,
-            data: JSON.stringify({"simNo": _this.simNo, "channels": channelId}),
+            url: _this.url,
+            data: JSON.stringify({"simNo": _this.simNo, "channels": ids}),
             error: function () {
                 //alert("网络连接错误，无法读取数据!");
                 //Utility.done();
             },
             success: function (data) {
-                console.log(data)
-                // createVideo('urlList[0].url', 1, 123)
+
                 if (data.code == 1000) {
                     var sessionId = data.data.sessionId;
-                    sessionId=sessionId;
-                    $("#currentSessionId").val(sessionId);
-                    urlList = data.data.videoList;
+                    _this.sessionId=sessionId;
+                    var urlList = data.data.videoList;
                     if(urlList && urlList.length != 0) {
-                        if(urlList.length == 1) {
-                            createVideo(urlList[0].url, channelId[0], sessionId)
-                        } else {
-                            for (var i = 0; i < urlList.length; i++) {
-                                // videoUrlList.push({
-                                //     id: urlList[i].channelId,
-                                //     url: urlList[i].url,
-                                //     sessionId:sessionId
-                                // })
-                                createVideo(urlList[i].url, urlList[i].channelId, sessionId)
+                        urlList.forEach(function(item,index) {
+                            var videoObj = _this.videoList.find(function(a) {
+                                return a.passageway === channelId[0]
+                            })
+                            videoObj.createPlayer(item.url)
+
+                            if(!_this.bateTimer) { // 发送心跳
+                                _this.bate()
                             }
-                        }
-                    } else {
-                        channelId.forEach(function(item,index) {
-                            changeStatus(item, false)
+
                         })
-                        
+                        if(!_this.vehicleNo) {
+                            _this.getVehicleNo()
+                        }
                     }
-                    // updateSIMVideoData()
                 } else if(data.code == 3005) {
-                    channelId.forEach(function(item,index) {
-                        console.log(item)
-                        changeStatus(item, false)
-                    })
-                    var dom = $('#tip_text_3')
-                    dom.text('设备已离线')
-                    if(window.tipPlayBtntimer) {
-                        window.clearTimeout(window.tipPlayBtntimer)
-                        window.tipPlayBtntimer = null
-                    }
-                    dom.show()
-                    window.tipPlayBtntimer = setTimeout(function(){
-                        dom.hide()
-                    }, 2000)
+                    _this.showTip('设备已离线')
                 } else if(data.code == 3007) {
-    
-                    channelId.forEach(function(item,index) {
-                        console.log(item)
-                        changeStatus(item, false)
-                    })
-                    var dom = $('#tip_text_3')
-                    if(window.tipPlayBtntimer) {
-                        window.clearTimeout(window.tipPlayBtntimer)
-                        window.tipPlayBtntimer = null
-                    }
-                    dom.text('暂无摄像头')
-                    dom.show()
-                    window.tipPlayBtntimer = setTimeout(function(){
-                        dom.hide()
-                    }, 2000)
+                    _this.showTip('暂无摄像头')
                 } else {
     
                     layer.alert(data.message, {icon: 6});
@@ -364,14 +366,14 @@ var aidrivingPlayer = {
     },
     bate: function() {
         var _this = this
-        setInterval(function () {
-            var url = "broadCast/heartBeat";
+        this.cleanBate()
+        _this.bateTimer = setInterval(function () {
             $.ajax({
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json;charset-UTF-8",
-                url: url,
-                data: JSON.stringify({ "simNo": _this.simNo, "sessionId": _this.sessionId,"channels": _this.channels }),
+                url: _this.bateUrl,
+                data: JSON.stringify({ "simNo": _this.simNo, "sessionId": _this.sessionId}),
                 error: function () {
                     //alert("网络连接错误，无法读取数据!");
                     //Utility.done();
@@ -386,38 +388,72 @@ var aidrivingPlayer = {
             })
         }, 10000)
     },
+    cleanBate: function() {
+        if(this.bateTimer) {
+            window.cleanTimeout(this.bateTimer)
+            this.bateTimer = null
+        }
+    },
+    showTip: function(msg) {
+        this.closeTip()
+        var dom = $('#tip_text_3').val(msg)
+        dom.show()
+        this.tipTimer = setTimeout(function(){
+            dom.hide()
+        }, 2000)
+    },
+    closeTip: function() {
+        if(this.tipTimer) {
+            window.clearTimeout(this.tipTimer)
+            this.tipTimer = null
+        }
+    },
     createVideos: function (options) {
         this.cleanVideo()
+        var _this = this
         var doms = ''
-        var vehicleNumber = options ? options.vehicleNumber || '测C111111' : '测C111111'
+        this.playType = options.playType
+        // this.url = options.url
 
         for (var i = 0; i < 16; i++) {
             var video = new videoPlayr({
                 passageway: i + 1,
-                vehicleNumber: vehicleNumber,
-                playType: options.playType
+                playType: options.playType,
+                getVideoUrl: _this.getVideoUrl
             })
             video.init()
             doms += video.createElement()
             this.videoList.push(video)
         }
 
+        var tip = '<div class="videolist-tip-text" id="tip_text_1">按 ESC 退出全屏</div><div class="videolist-tip-text" id="tip_text_2">播放异常，请重试</div><div class="videolist-tip-text" id="tip_text_3">暂无摄像头</div>'
+        
         $('.video-content').append(doms)
+        $(".video-content").append(tip)
     },
-
     cleanVideo: function() {
         $('.video-content').empty()
         this.videoList = []
     },
-    playAll: function() {
-        for (var video of this.videoList) {
-            video.play()
+    playAll: function(options) {
+        this.simNo = options.simNo
+        
+        if(this.playType === 'broadcast') {
+            console.log(this)
+            this.getVideoUrl([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
+        } else {
+
         }
     },
     stopAll: function() {
         for (var video of this.videoList) {
-            video.destroy() // 销毁
+            video.pause() // 停止
         }
+    },
+    updateVehicleNo: function(value) {
+        this.videoList.forEach(function(item) {
+            item.updateVehicleNo(value)
+        })
     },
     updatePassageway: function (num) {
         $('.video-content').attr('class', 'video-content video-passageway-' + num)
