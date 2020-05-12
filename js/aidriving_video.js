@@ -285,7 +285,7 @@ var aidrivingPlayer = {
     simNo: '',
     tipTimer: null,
     autoCloseTimer: null,
-    autoCloseTime: 5 * 60,
+    autoCloseTime: 10,
     autoCloseTimeAcc: 0,
     vehicleNo: '',
     playType: 'broadcast',
@@ -311,50 +311,70 @@ var aidrivingPlayer = {
         })
     },
     getVideoUrl: function(ids) { // 获取视频播放url
-        var _this = this
-        $.ajax({
-            dataType: "json",
-            type: "POST",
-            contentType: "application/json;charset-UTF-8",
-            url: _this.url,
-            data: JSON.stringify({"simNo": _this.simNo, "channels": ids}),
-            error: function () {
-                //alert("网络连接错误，无法读取数据!");
-                //Utility.done();
-            },
-            success: function (data) {
+        var _this = this;
+        [{
+            channelId: 1,
+            url: 'https://d1--cn-gotcha03.bilivideo.com/live-bvc/858568/live_82483195_7580994_2500.flv?cdn=cn-gotcha03&expires=1589294310&len=0&oi=1784476427&pt=web&qn=250&trid=272503c1b1524591ae8ac3be747d6bad&sigparams=cdn,expires,len,oi,pt,qn,trid&sign=b3b7f197da094447638165496dae44d8&ptype=0&platform=web&pSession=H8DZj34b-j8Hz-4N6m-cdnp-4HDEtdRHQcFr'
+        }].forEach(function(item,index) {
+            console.log(_this)
+            var videoObj = _this.videoList.find(function(a) {
+                return a.passageway === item.channelId
+            })
+            videoObj.createPlayer(item.url)
 
-                if (data.code == 1000) {
-                    var sessionId = data.data.sessionId;
-                    _this.sessionId=sessionId;
-                    var urlList = data.data.videoList;
-                    if(urlList && urlList.length != 0) {
-                        urlList.forEach(function(item,index) {
-                            var videoObj = _this.videoList.find(function(a) {
-                                return a.passageway === channelId[0]
-                            })
-                            videoObj.createPlayer(item.url)
-
-                            if(!_this.bateTimer) { // 发送心跳
-                                _this.bate()
-                            }
-
-                        })
-                        if(!_this.vehicleNo) {
-                            _this.getVehicleNo()
-                        }
-                    }
-                } else if(data.code == 3005) {
-                    _this.showTip('设备已离线')
-                } else if(data.code == 3007) {
-                    _this.showTip('暂无摄像头')
-                } else {
-    
-                    layer.alert(data.message, {icon: 6});
-                }
-    
+            if(!_this.bateTimer) { // 发送心跳
+                _this.bate()
             }
-        });
+
+            _this.openAutoClose()
+
+        })
+        if(!_this.vehicleNo) {
+            _this.getVehicleNo()
+        }
+        // $.ajax({
+        //     dataType: "json",
+        //     type: "POST",
+        //     contentType: "application/json;charset-UTF-8",
+        //     url: _this.url,
+        //     data: JSON.stringify({"simNo": _this.simNo, "channels": ids}),
+        //     error: function () {
+        //         //alert("网络连接错误，无法读取数据!");
+        //         //Utility.done();
+        //     },
+        //     success: function (data) {
+
+        //         if (data.code == 1000) {
+        //             var sessionId = data.data.sessionId;
+        //             _this.sessionId=sessionId;
+        //             var urlList = data.data.videoList;
+        //             if(urlList && urlList.length != 0) {
+        //                 urlList.forEach(function(item,index) {
+        //                     var videoObj = _this.videoList.find(function(a) {
+        //                         return a.passageway === item
+        //                     })
+        //                     videoObj.createPlayer(item.url)
+
+        //                     if(!_this.bateTimer) { // 发送心跳
+        //                         _this.bate()
+        //                     }
+
+        //                 })
+        //                 if(!_this.vehicleNo) {
+        //                     _this.getVehicleNo()
+        //                 }
+        //             }
+        //         } else if(data.code == 3005) {
+        //             _this.showTip('设备已离线')
+        //         } else if(data.code == 3007) {
+        //             _this.showTip('暂无摄像头')
+        //         } else {
+    
+        //             layer.alert(data.message, {icon: 6});
+        //         }
+    
+        //     }
+        // });
     },
     bate: function() { // 开启心跳
         var _this = this
@@ -414,7 +434,7 @@ var aidrivingPlayer = {
             var video = new videoPlayr({
                 passageway: i + 1,
                 playType: options.playType,
-                getVideoUrl: _this.getVideoUrl
+                getVideoUrl: _this.getVideoUrl.bind(this)
             })
             video.init()
             doms += video.createElement()
