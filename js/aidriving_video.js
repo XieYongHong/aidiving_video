@@ -1,20 +1,9 @@
-/**`
-* 初始化video
-* @param options 
-* {
-*  autoCloseTime: number 自动关闭视频时间
-*  src: string 视频地址
-*  sim: string sim卡号
-*  passageway: number 通道号
-* }
-* */
+
 var videoPlayr = function (options) {
 
     this.sim = options.sim || ''
     this.passageway = options.passageway || 1
     this.playStatus = 0 // 0：停止； 1：播放； 2：暂停；
-    this.autoCloseTimer = null   // 计时器对象
-    this.autoCloseTime = 5 * 60 * 1000   // 自动关闭视频时间; 默认五分钟
     this.getVideoUrl = options.getVideoUrl
     this.type = options.playType || 'broadcast'
     this.video = null
@@ -142,7 +131,7 @@ videoPlayr.prototype.pause = function () { // 暂停
         this.showMask()
     }
 }
-videoPlayr.prototype.destroy = function () {
+videoPlayr.prototype.destroy = function () { // 销毁
     if(this.video) {
         this.video.pause()
         this.video.unload();
@@ -160,10 +149,10 @@ videoPlayr.prototype.hideLoading = function () { // 隐藏加载动画
     $(this.videoClassName + ' .loading').hide()
 }
 videoPlayr.prototype.showMask = function () { // 显示背景图
-
+    $(this.videoClassName + ' .video-bgImg').hide()
 }
 videoPlayr.prototype.hideMask = function () { // 隐藏背景图
- 
+    $(this.videoClassName + ' .video-bgImg').hide()
 }
 videoPlayr.prototype.timeout = function () {  // 超时计时器
     var _this = this
@@ -295,13 +284,16 @@ var aidrivingPlayer = {
     sessionId: '',
     simNo: '',
     tipTimer: null,
+    autoCloseTimer: null,
+    autoCloseTime: 5 * 60,
+    autoCloseTimeAcc: 0,
     vehicleNo: '',
     playType: 'broadcast',
     url: 'http://localhost:1080/broadCast/getBroadCastAddress',
     bateUrl: 'http://localhost:1080/broadCast/heartBeat',
     getVehicleNoUrl: 'http://localhost:1080/gpsroot/vehicle/getPlateNoByVehic',
     playbackTimelineUrl:'http://localhost:1080/gpsroot/videoPlayBack/sendVideoCommand',
-    getVehicleNo: function() {
+    getVehicleNo: function() { // 获取车牌号
         var _this = this
         $.ajax({
             dataType: 'json',
@@ -318,7 +310,7 @@ var aidrivingPlayer = {
             }
         })
     },
-    getVideoUrl: function(ids) {
+    getVideoUrl: function(ids) { // 获取视频播放url
         var _this = this
         $.ajax({
             dataType: "json",
@@ -364,7 +356,7 @@ var aidrivingPlayer = {
             }
         });
     },
-    bate: function() {
+    bate: function() { // 开启心跳
         var _this = this
         this.cleanBate()
         _this.bateTimer = setInterval(function () {
@@ -388,13 +380,13 @@ var aidrivingPlayer = {
             })
         }, 10000)
     },
-    cleanBate: function() {
+    cleanBate: function() { // 关闭心跳
         if(this.bateTimer) {
             window.cleanTimeout(this.bateTimer)
             this.bateTimer = null
         }
     },
-    showTip: function(msg) {
+    showTip: function(msg) { // 显示提示
         this.closeTip()
         var dom = $('#tip_text_3').val(msg)
         dom.show()
@@ -402,18 +394,21 @@ var aidrivingPlayer = {
             dom.hide()
         }, 2000)
     },
-    closeTip: function() {
+    closeTip: function() { // 隐藏提示
         if(this.tipTimer) {
             window.clearTimeout(this.tipTimer)
             this.tipTimer = null
         }
     },
-    createVideos: function (options) {
+    createVideos: function (options) { // 创建视频dom
         this.cleanVideo()
         var _this = this
         var doms = ''
         this.playType = options.playType
         // this.url = options.url
+        if(options.type !== 'broadcast') {
+            this.updatePassageway(1)
+        }
 
         for (var i = 0; i < 16; i++) {
             var video = new videoPlayr({
@@ -431,11 +426,11 @@ var aidrivingPlayer = {
         $('.video-content').append(doms)
         $(".video-content").append(tip)
     },
-    cleanVideo: function() {
+    cleanVideo: function() { // 清除视频dom
         $('.video-content').empty()
         this.videoList = []
     },
-    playAll: function(options) {
+    playAll: function(options) { // 播放全部视频
         this.simNo = options.simNo
         
         if(this.playType === 'broadcast') {
@@ -445,17 +440,41 @@ var aidrivingPlayer = {
 
         }
     },
-    stopAll: function() {
-        for (var video of this.videoList) {
-            video.pause() // 停止
+    openAutoClose: function() { // 打开定时关闭视频
+        var _this = this
+        this.closeAutoClose()
+        this.autoCloseTimer = setInterval(function() {
+            _this.autoCloseTimeAcc += 1
+            if(_this.autoCloseTimeAcc >= _this.autoCloseTime) {
+                _this.destroyAll()
+            }
+        }, 1000)
+    },
+    closeAutoClose: function() {// 关闭定时关闭视频
+        if(this.autoCloseTimer) {
+            window.close(this.autoCloseTimer)
+            this.autoCloseTimer = null
         }
     },
-    updateVehicleNo: function(value) {
+    updateAutoCloseTime: function(time) { // 更新定时关闭视频时间
+        this.autoCloseTime = time
+    },
+    destroyAll: function() { // 销毁所有视频
+        for (var video of this.videoList) {
+            video.destroy() // 停止
+        }
+    },
+    stopAll: function() { // 暂停所有视频
+        for (var video of this.videoList) {
+            video.pause() // 暂停
+        }
+    },
+    updateVehicleNo: function(value) { // 更新车牌显示
         this.videoList.forEach(function(item) {
             item.updateVehicleNo(value)
         })
     },
-    updatePassageway: function (num) {
+    updatePassageway: function (num) { // 更新播放显示视频路数
         $('.video-content').attr('class', 'video-content video-passageway-' + num)
     }
 }
