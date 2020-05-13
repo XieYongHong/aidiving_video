@@ -5,27 +5,28 @@ var videoPlayr = function (options) {
     this.passageway = options.passageway || 1
     this.playStatus = 0 // 0：停止； 1：播放； 2：暂停；
     this.getVideoUrl = options.getVideoUrl
+    this.destroyCallback = options.destroyCallback
     this.type = options.playType || 'broadcast'
     this.video = null
     this.videoClassName = '.passageway-' + this.passageway
 }
 
-videoPlayr.prototype.init = function () {
+videoPlayr.prototype.init = function () { // 初始化
     
-    window.onresize = function(e) {
+    window.onresize = function(e) { // 屏幕改变监听
         if(!checkFull()) {
             $('.iconun-full-screen').attr('title','全屏')
             $('.iconun-full-screen').attr('class','iconfont iconfull-screen')
         }
     }
 
-    function checkFull() {
+    function checkFull() { // 判断是否全屏
         var isFull =  document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
         if(isFull === undefined) isFull = false;
         return isFull;
     }
 }
-videoPlayr.prototype.createElement = function () {
+videoPlayr.prototype.createElement = function () { // 创建video标签
     var _this = this
     var videoDOM = `<div class="video-body passageway-${this.passageway} video-${this.type}">
                         <video src="" class="video video-scale" id="video${this.passageway}" muted autoplay></video>
@@ -49,7 +50,7 @@ videoPlayr.prototype.createElement = function () {
     
     return videoDOM
 }
-videoPlayr.prototype.tooBtnInit = function () {
+videoPlayr.prototype.tooBtnInit = function () { // 注册bar中的按钮事件
     var _this = this
     var className = this.videoClassName
 
@@ -58,17 +59,18 @@ videoPlayr.prototype.tooBtnInit = function () {
         var videoBody = $(this).parents('.video-body')[0]
         var videoDOM = $(className + ' .video')[0]
         switch (type) {
-            case 1:
+            case 1: // 播放
                 if(_this.playStatus === 0) { //
                     _this.play()
                 }
                 break
-            case 2:
+            case 2: // 停止
                 if(_this.playStatus === 1) {
                     _this.destroy()
+                    _this.destroyCallback(_this.passageway)
                 }
                 break
-            case 3:
+            case 3: // 截屏
                 _this.screenshots(videoDOM)
                 break
             case 4: // 全屏
@@ -110,6 +112,7 @@ videoPlayr.prototype.createPlayer = function (src) {
             _this.hideMask()
             // videoLoadHide($(this))
         })
+        this.playStatus = 1
 
         this.video.attachMediaElement(videoElement);
 
@@ -129,6 +132,7 @@ videoPlayr.prototype.pause = function () { // 暂停
         this.video.pause()
         this.hideLoading()
         this.showMask()
+        this.playStatus = 2
     }
 }
 videoPlayr.prototype.destroy = function () { // 销毁
@@ -139,6 +143,7 @@ videoPlayr.prototype.destroy = function () { // 销毁
         this.video.detachMediaElement();
         this.video.destroy();
         this.video = null
+        this.playStatus = 0
         this.hideLoading()
         this.showMask()
     }
@@ -161,6 +166,7 @@ videoPlayr.prototype.timeout = function () {  // 超时计时器
     this.cleanTimeout()
     this.timer = setTimeout(function () {
         // 显示超时提示 
+        _this.playStatus = 0
         var dom = $('#tip_text_2')
         var status = dom.is(":hidden")
         if(status) {
@@ -285,7 +291,7 @@ var aidrivingPlayer = {
     simNo: '',
     tipTimer: null,
     autoCloseTimer: null,
-    autoCloseTime: 5 * 60,
+    autoCloseTime: 0,
     autoCloseTimeAcc: 0,
     vehicleNo: '',
     playType: 'broadcast',
@@ -311,80 +317,66 @@ var aidrivingPlayer = {
         })
     },
     getVideoUrl: function(ids) { // 获取视频播放url
+        console.log(ids)
         var _this = this;
         let _ids = []
-        var testArr = new Array(16).join(' ').split('').map(function(a, index) {
-            return {
-                channelId: index + 1,
-                url: 'https://27-188-96-6.ksyungslb.com/js.live-play.acgvideo.com/live-js/971052/live_234335512_70538490_1500.flv?sdc_dispatch_302_rewrite=Y2RuY3FjdDMyLWxpdmUxMS5jZG5jcWN0MzIua3N5dW4uY29tNTU3OTkwMTkz&order=0&pt=web&oi=1784087455&wsTime=1589349090&pSession=KDs4Yijx-1skx-40cz-DtxB-zFDnHk6WwxdS&sig=no&trid=a9e1134703c34571b918753c657ee87e&platform=web&wsSecret=a7cf93fdce1a8795a4ded9fea4228110'
-            }
-        })
         
-        if(Array.isArray(ids)) {
+        if(Array.isArray(ids)) { // 判断是单个视频播放 还是全部播放
             _ids = ids
         } else {
             _ids = [ids]
         }
 
-        testArr.forEach(function(item,index) {
-            var videoObj = _this.videoList.find(function(a) {
-                return a.passageway === item.channelId
-            })
-            videoObj.createPlayer(item.url)
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json;charset-UTF-8",
+            url: _this.url,
+            data: JSON.stringify({"simNo": _this.simNo, "channels": _ids}),
+            error: function () {
+                //alert("网络连接错误，无法读取数据!");
+                //Utility.done();
+            },
+            success: function (data) {
 
-            if(!_this.bateTimer) { // 发送心跳
-                _this.bate()
+                if (data.code == 1000) {
+                    var _data = data.data
+                    var urlList = _data.videoList;
+                    _this.sessionId = _data.sessionId;
+
+                    if(urlList && urlList.length != 0) { // 是否有url数据
+
+                        urlList.forEach(function(item,index) { // 遍历url数据
+
+                            // 找到对应通道的视频对象
+                            var videoObj = _this.videoList.find(function(a) {
+                                return a.passageway === item
+                            })
+
+                            if( videoObj ) {
+                                videoObj.createPlayer(item.url) // 创建videoPlayer对象,并开始播放视频
+                            }
+                             
+                            if(!_this.bateTimer) { // 是否有心跳，没有就发送心跳
+                                _this.bate()
+                            }
+
+                        })
+                        if(!_this.vehicleNo) { // 获取车牌号
+                            _this.getVehicleNo()
+                        }
+                    }
+                } else if(data.code == 3005) {
+                    _this.showTip('设备已离线')
+                } else if(data.code == 3007) {
+                    _this.showTip('暂无摄像头')
+                } else {
+    
+                    layer.alert(data.message, {icon: 6});
+                }
+    
             }
-
-            _this.openAutoClose()
-
-        })
-        if(!_this.vehicleNo) {
-            _this.getVehicleNo()
-        }
-        // $.ajax({
-        //     dataType: "json",
-        //     type: "POST",
-        //     contentType: "application/json;charset-UTF-8",
-        //     url: _this.url,
-        //     data: JSON.stringify({"simNo": _this.simNo, "channels": _ids}),
-        //     error: function () {
-        //         //alert("网络连接错误，无法读取数据!");
-        //         //Utility.done();
-        //     },
-        //     success: function (data) {
-
-        //         if (data.code == 1000) {
-        //             var sessionId = data.data.sessionId;
-        //             _this.sessionId=sessionId;
-        //             var urlList = data.data.videoList;
-        //             if(urlList && urlList.length != 0) {
-        //                 urlList.forEach(function(item,index) {
-        //                     var videoObj = _this.videoList.find(function(a) {
-        //                         return a.passageway === item
-        //                     })
-        //                     videoObj.createPlayer(item.url)
-        //                      
-        //                     if(!_this.bateTimer) { // 发送心跳
-        //                         _this.bate()
-        //                     }
-
-        //                 })
-        //                 if(!_this.vehicleNo) {
-        //                     _this.getVehicleNo()
-        //                 }
-        //             }
-        //         } else if(data.code == 3005) {
-        //             _this.showTip('设备已离线')
-        //         } else if(data.code == 3007) {
-        //             _this.showTip('暂无摄像头')
-        //         } else {
-    
-        //             layer.alert(data.message, {icon: 6});
-        //         }
-    
-        //     }
-        // });
+        });
     },
     bate: function() { // 开启心跳
         var _this = this
@@ -396,13 +388,8 @@ var aidrivingPlayer = {
                 contentType: "application/json;charset-UTF-8",
                 url: _this.bateUrl,
                 data: JSON.stringify({ "simNo": _this.simNo, "sessionId": _this.sessionId}),
-                error: function () {
-                    //alert("网络连接错误，无法读取数据!");
-                    //Utility.done();
-                },
                 success: function (data) {
-                    if (data.code == 1000) {
-                    }
+
                 },
                 error: function (err) {
                     console.log(err)
@@ -445,6 +432,7 @@ var aidrivingPlayer = {
                 passageway: i + 1,
                 playType: options.playType,
                 getVideoUrl: _this.getVideoUrl.bind(this),
+                destroyCallback: _this.destroyCallback.bind(this)
             })
             video.init()
             doms += video.createElement()
@@ -472,13 +460,18 @@ var aidrivingPlayer = {
     },
     openAutoClose: function() { // 打开定时关闭视频
         var _this = this
+        this.autoCloseTimeAcc = 0
         this.closeAutoClose()
-        this.autoCloseTimer = setInterval(function() {
-            _this.autoCloseTimeAcc += 1
-            if(_this.autoCloseTimeAcc >= _this.autoCloseTime) {
-                _this.destroyAll()
-            }
-        }, 1000)
+        if(this.autoCloseTime !== 0) {
+            this.autoCloseTimer = setInterval(function() {
+                _this.autoCloseTimeAcc += 1
+                console.log(_this.autoCloseTimeAcc)
+                if(_this.autoCloseTimeAcc >= _this.autoCloseTime) {
+                    _this.autoCloseTimeAcc = 0
+                    _this.destroyAll()
+                }
+            }, 1000)
+        }
     },
     closeAutoClose: function() {// 关闭定时关闭视频
         if(this.autoCloseTimer) {
@@ -487,13 +480,20 @@ var aidrivingPlayer = {
         }
     },
     updateAutoCloseTime: function(time) { // 更新定时关闭视频时间
-        this.autoCloseTime = time
+        if(time || time === 0) {
+            this.autoCloseTime = time 
+            this.openAutoClose() // 重置时间
+        }
     },
     destroyAll: function() { // 销毁所有视频
         for (var video of this.videoList) {
             video.destroy() // 停止
         }
-        this.cleanBate()
+        this.cleanBate() // 停止心跳
+        this.closeAutoClose()
+    },
+    destroyCallback: function(id) {
+        console.log(id)
     },
     stopAll: function() { // 暂停所有视频
         for (var video of this.videoList) {
