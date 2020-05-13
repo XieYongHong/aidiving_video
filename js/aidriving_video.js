@@ -133,6 +133,7 @@ videoPlayr.prototype.pause = function () { // 暂停
 }
 videoPlayr.prototype.destroy = function () { // 销毁
     if(this.video) {
+        this.cleanTimeout()
         this.video.pause()
         this.video.unload();
         this.video.detachMediaElement();
@@ -149,7 +150,7 @@ videoPlayr.prototype.hideLoading = function () { // 隐藏加载动画
     $(this.videoClassName + ' .loading').hide()
 }
 videoPlayr.prototype.showMask = function () { // 显示背景图
-    $(this.videoClassName + ' .video-bgImg').hide()
+    $(this.videoClassName + ' .video-bgImg').show()
 }
 videoPlayr.prototype.hideMask = function () { // 隐藏背景图
     $(this.videoClassName + ' .video-bgImg').hide()
@@ -158,7 +159,6 @@ videoPlayr.prototype.timeout = function () {  // 超时计时器
     var _this = this
     
     this.cleanTimeout()
-
     this.timer = setTimeout(function () {
         // 显示超时提示 
         var dom = $('#tip_text_2')
@@ -285,7 +285,7 @@ var aidrivingPlayer = {
     simNo: '',
     tipTimer: null,
     autoCloseTimer: null,
-    autoCloseTime: 10,
+    autoCloseTime: 5 * 60,
     autoCloseTimeAcc: 0,
     vehicleNo: '',
     playType: 'broadcast',
@@ -312,11 +312,21 @@ var aidrivingPlayer = {
     },
     getVideoUrl: function(ids) { // 获取视频播放url
         var _this = this;
-        [{
-            channelId: 1,
-            url: 'https://d1--cn-gotcha03.bilivideo.com/live-bvc/858568/live_82483195_7580994_2500.flv?cdn=cn-gotcha03&expires=1589294310&len=0&oi=1784476427&pt=web&qn=250&trid=272503c1b1524591ae8ac3be747d6bad&sigparams=cdn,expires,len,oi,pt,qn,trid&sign=b3b7f197da094447638165496dae44d8&ptype=0&platform=web&pSession=H8DZj34b-j8Hz-4N6m-cdnp-4HDEtdRHQcFr'
-        }].forEach(function(item,index) {
-            console.log(_this)
+        let _ids = []
+        var testArr = new Array(16).join(' ').split('').map(function(a, index) {
+            return {
+                channelId: index + 1,
+                url: 'https://27-188-96-6.ksyungslb.com/js.live-play.acgvideo.com/live-js/971052/live_234335512_70538490_1500.flv?sdc_dispatch_302_rewrite=Y2RuY3FjdDMyLWxpdmUxMS5jZG5jcWN0MzIua3N5dW4uY29tNTU3OTkwMTkz&order=0&pt=web&oi=1784087455&wsTime=1589349090&pSession=KDs4Yijx-1skx-40cz-DtxB-zFDnHk6WwxdS&sig=no&trid=a9e1134703c34571b918753c657ee87e&platform=web&wsSecret=a7cf93fdce1a8795a4ded9fea4228110'
+            }
+        })
+        
+        if(Array.isArray(ids)) {
+            _ids = ids
+        } else {
+            _ids = [ids]
+        }
+
+        testArr.forEach(function(item,index) {
             var videoObj = _this.videoList.find(function(a) {
                 return a.passageway === item.channelId
             })
@@ -337,7 +347,7 @@ var aidrivingPlayer = {
         //     type: "POST",
         //     contentType: "application/json;charset-UTF-8",
         //     url: _this.url,
-        //     data: JSON.stringify({"simNo": _this.simNo, "channels": ids}),
+        //     data: JSON.stringify({"simNo": _this.simNo, "channels": _ids}),
         //     error: function () {
         //         //alert("网络连接错误，无法读取数据!");
         //         //Utility.done();
@@ -354,7 +364,7 @@ var aidrivingPlayer = {
         //                         return a.passageway === item
         //                     })
         //                     videoObj.createPlayer(item.url)
-
+        //                      
         //                     if(!_this.bateTimer) { // 发送心跳
         //                         _this.bate()
         //                     }
@@ -394,15 +404,15 @@ var aidrivingPlayer = {
                     if (data.code == 1000) {
                     }
                 },
-                error: function () {
-                    console.log(data)
+                error: function (err) {
+                    console.log(err)
                 }
             })
         }, 10000)
     },
     cleanBate: function() { // 关闭心跳
         if(this.bateTimer) {
-            window.cleanTimeout(this.bateTimer)
+            window.clearInterval(this.bateTimer)
             this.bateTimer = null
         }
     },
@@ -434,7 +444,7 @@ var aidrivingPlayer = {
             var video = new videoPlayr({
                 passageway: i + 1,
                 playType: options.playType,
-                getVideoUrl: _this.getVideoUrl.bind(this)
+                getVideoUrl: _this.getVideoUrl.bind(this),
             })
             video.init()
             doms += video.createElement()
@@ -472,7 +482,7 @@ var aidrivingPlayer = {
     },
     closeAutoClose: function() {// 关闭定时关闭视频
         if(this.autoCloseTimer) {
-            window.close(this.autoCloseTimer)
+            window.clearInterval(this.autoCloseTimer)
             this.autoCloseTimer = null
         }
     },
@@ -483,6 +493,7 @@ var aidrivingPlayer = {
         for (var video of this.videoList) {
             video.destroy() // 停止
         }
+        this.cleanBate()
     },
     stopAll: function() { // 暂停所有视频
         for (var video of this.videoList) {
