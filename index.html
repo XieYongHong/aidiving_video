@@ -12,7 +12,7 @@
 <body>
     <div class="aidriving">
         <div class="left">
-            <a href="#" target="_blank" >点击此处查看API文档</a>
+            <a href="./aidiving.api.html" target="_blank" >点击此处查看API文档</a>
             <div class="rows">
                 <div class="cols">
                     <label>资源URL地址</label>
@@ -67,10 +67,6 @@
                     <label>SIM卡号</label>
                     <input id='sim_number'/>
                 </div>
-                <!-- <div class="cols">
-                    <label>通道号</label>
-                    <input id='passageway_number'/>
-                </div> -->
                 <div class="cols playback" style="display: none;">
                     <label>开始时间</label>
                     <input id='start_time'/>
@@ -131,7 +127,7 @@
             var playType = $('#video_type').val()
             
             aidrivingPlayer.createVideos({
-                url: url,
+                url: '/yunapi',
                 secretKey: secretKey,
                 playType: playType,
             })

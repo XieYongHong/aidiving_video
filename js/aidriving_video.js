@@ -295,17 +295,21 @@ var aidrivingPlayer = {
     autoCloseTimeAcc: 0,
     vehicleNo: '',
     playType: 'broadcast',
-    url: 'http://localhost:1080/broadCast/getBroadCastAddress',
-    bateUrl: 'http://localhost:1080/broadCast/heartBeat',
-    getVehicleNoUrl: 'http://localhost:1080/gpsroot/vehicle/getPlateNoByVehic',
-    playbackTimelineUrl:'http://localhost:1080/gpsroot/videoPlayBack/sendVideoCommand',
+    url: 'http://localhost:1080',
+    videoUrl: '/videoapi/openVideo',
+    stopUrl: '/videoapi/closeVideo',
+    bateUrl: '/videoapi/heartBeat',
+    getVehicleNoUrl: '/gpsroot/vehicle/getPlateNoByVehic',
+    playbackTimelineUrl:'/videoapi/videoPlayBack/getResourceListWeb', // 下发历史视频资源列表查询指令
+    getResourceListUrl:'/videoapi/videoPlayBack/getResourceListById', // 根据指令Id查询音视频资源列表
+    playbackUrl:'/videoapi/videoPlayBack/sendVideoPlayBackCommandWeb', // 下发远程回放指令
     getVehicleNo: function() { // 获取车牌号
         var _this = this
         $.ajax({
             dataType: 'json',
             type: 'POST',
             contentType: 'a',
-            url: _this.getVehicleNoUrl,
+            url: _this.url + _this.getVehicleNoUrl,
             data: JSON.stringify({"simNo": _this.simNo}),
             error: function(){},
             success: function(data) {
@@ -327,18 +331,27 @@ var aidrivingPlayer = {
             _ids = [ids]
         }
 
+        if(this.playType === 'broadcast') {
+            this.getVideoUrlAjax(_ids)
+        } else {
+            this.getPlaybackAjax(_ids)
+        }
+
+    },
+    getVideoUrlAjax: function(ids) {
+        var _this = this
         $.ajax({
             dataType: "json",
             type: "POST",
             contentType: "application/json;charset-UTF-8",
-            url: _this.url,
-            data: JSON.stringify({"simNo": _this.simNo, "channels": _ids}),
+            url: _this.url + _this.videoUrl,
+            data: JSON.stringify({"simNo": _this.simNo, "channels": ids}),
             error: function () {
                 //alert("网络连接错误，无法读取数据!");
                 //Utility.done();
             },
             success: function (data) {
-
+                console.log(data.code)
                 if (data.code == 1000) {
                     var _data = data.data
                     var urlList = _data.videoList;
@@ -371,12 +384,50 @@ var aidrivingPlayer = {
                 } else if(data.code == 3007) {
                     _this.showTip('暂无摄像头')
                 } else {
-    
-                    layer.alert(data.message, {icon: 6});
+                    _this.showTip(data.message)
                 }
     
             }
         });
+    },
+    getPlaybackAjax: function(ids) {
+        var _this = this
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json;charset-UTF-8",
+            url: _this.url + _this.playbackTimelineUrl,
+            data: JSON.stringify({"simNo": _this.simNo, "channel": ids[0]}),
+            error: function () {
+                //alert("网络连接错误，无法读取数据!");
+                //Utility.done();
+            },
+            success: function(data) {
+
+            }
+        })
+    },
+    stopVideoAjax: function(ids) { // 停止视频
+        var _this = this
+        if(Array.isArray(ids)) { // 判断是单个视频播放 还是全部播放
+            _ids = ids
+        } else {
+            _ids = [ids]
+        }
+
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json;charset-UTF-8",
+            url: _this.url + _this.videoUrl,
+            data: JSON.stringify({"simNo": _this.simNo, "channelNums": _ids, sessionId: _this.sessionId}),
+            error: function() {
+
+            },
+            success: function() {
+
+            }
+        })
     },
     bate: function() { // 开启心跳
         var _this = this
@@ -386,7 +437,7 @@ var aidrivingPlayer = {
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json;charset-UTF-8",
-                url: _this.bateUrl,
+                url: _this.url + _this.bateUrl,
                 data: JSON.stringify({ "simNo": _this.simNo, "sessionId": _this.sessionId}),
                 success: function (data) {
 
@@ -405,7 +456,7 @@ var aidrivingPlayer = {
     },
     showTip: function(msg) { // 显示提示
         this.closeTip()
-        var dom = $('#tip_text_3').val(msg)
+        var dom = $('#tip_text_3').text(msg)
         dom.show()
         this.tipTimer = setTimeout(function(){
             dom.hide()
@@ -422,7 +473,7 @@ var aidrivingPlayer = {
         var _this = this
         var doms = ''
         this.playType = options.playType
-        // this.url = options.url
+        this.url = options.url
         if(options.type !== 'broadcast') {
             this.updatePassageway(1)
         }
@@ -489,11 +540,12 @@ var aidrivingPlayer = {
         for (var video of this.videoList) {
             video.destroy() // 停止
         }
+        stopVideoAjax([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
         this.cleanBate() // 停止心跳
         this.closeAutoClose()
     },
     destroyCallback: function(id) {
-        console.log(id)
+        stopVideoAjax([id])
     },
     stopAll: function() { // 暂停所有视频
         for (var video of this.videoList) {
