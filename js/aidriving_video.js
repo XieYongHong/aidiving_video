@@ -119,7 +119,7 @@ videoPlayr.prototype.createPlayer = function (src) {
         this.video.load();
         this.video.play();
         this.showLoading()
-        this.timeout()
+        // this.timeout()
     }
 }
 videoPlayr.prototype.play = function () {
@@ -345,7 +345,7 @@ var aidrivingPlayer = {
             type: "POST",
             contentType: "application/json;charset-UTF-8",
             url: _this.url + _this.videoUrl,
-            data: JSON.stringify({"simNo": _this.simNo, "channels": ids}),
+            data: JSON.stringify({"simNo": _this.simNo, "channelNums": ids}),
             error: function () {
                 //alert("网络连接错误，无法读取数据!");
                 //Utility.done();
@@ -363,7 +363,7 @@ var aidrivingPlayer = {
 
                             // 找到对应通道的视频对象
                             var videoObj = _this.videoList.find(function(a) {
-                                return a.passageway === item
+                                return a.passageway === item.channelId
                             })
 
                             if( videoObj ) {
