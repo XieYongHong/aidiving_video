@@ -65,7 +65,7 @@
                 </div>
                 <div class="cols">
                     <label>SIM卡号</label>
-                    <input id='sim_number'/>
+                    <input id='sim_number' value="18912342233"/>
                 </div>
                 <div class="cols playback" style="display: none;">
                     <label>开始时间</label>
@@ -127,7 +127,7 @@
             var playType = $('#video_type').val()
             
             aidrivingPlayer.createVideos({
-                url: '/yunapi',
+                url: '/aidrivingApi',
                 secretKey: secretKey,
                 playType: playType,
             })
@@ -141,7 +141,7 @@
         })
 
         $('#close_connection').click(function() {
-            console.log('断开连接')
+
             $('#video_type').attr('disabled', false)
             $('.btns-status').hide()
             $('.video-params').hide()
@@ -149,15 +149,8 @@
         })
 
         $('#play').click(function() {
-            var simNo = $('#sim_number').val()
-            var startTime = $('#start_time').val()
-            var endTime = $('#end_time').val()
 
-            aidrivingPlayer.playAll({
-                simNo: simNo,
-                startTime: startTime,
-                endTime: endTime,
-            })
+            aidrivingPlayer.playAll()
         })
 
         $('#stop').click(function() {

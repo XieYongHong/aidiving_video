@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\Administrator\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.3\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="file:///c:\Users\Chirs.Luo\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.3\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
       
       
 
@@ -265,10 +265,7 @@ pre[data-line] .line-highlight[data-end]:after {
       <div class="mume markdown-preview  ">
       <h1 class="mume-header" id="%E5%A4%A9%E5%B7%A1%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0">&#x5929;&#x5DE1;&#x5F00;&#x653E;&#x5E73;&#x53F0;</h1>
 
-<h3 class="mume-header" id="%E5%85%BC%E5%AE%B9%E6%80%A7">&#x517C;&#x5BB9;&#x6027;</h3>
-
-<p><code>aidiving.js</code>&#x4E0D;&#x652F;&#x6301;IE&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x56E0;<code>aidiving.js</code>&#x4F7F;&#x7528;&#x4E86;<code>ES6</code>&#x7684;&#x7279;&#x6027;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;<a href="https://v.car900.com/resource/ChromeSetup.exe">Chrome&#x6D4F;&#x89C8;&#x5668;</a></p>
-<h3 class="mume-header" id="%E6%BC%94%E7%A4%BAdemo">&#x6F14;&#x793A;Demo</h3>
+<h2 class="mume-header" id="%E6%BC%94%E7%A4%BAdemo">&#x6F14;&#x793A;Demo</h2>
 
 <ul>
 <li>
@@ -320,58 +317,1755 @@ HTTPS&#xFF08;&#x5168;&#x79F0;&#xFF1A;Hyper Text Transfer Protocol over Secure So
 <ul>
 <li>&#x7528;&#x6237;&#x767B;&#x5F55;&#x63A5;&#x53E3;&#x83B7;&#x53D6;token</li>
 </ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/VsOpenAPI/user/userLogin</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>userName</code></td>
+<td>&#x8D26;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>&#x5BC6;&#x7801;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>versionPhone</code></td>
+<td>&#x624B;&#x673A;&#x5F53;&#x524D;&#x7684;android&#x7248;&#x672C;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>phoneModel</code></td>
+<td>&#x624B;&#x673A;&#x578B;&#x53F7;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>appId</code></td>
+<td>APP&#x552F;&#x4E00;&#x53F7;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&#x6210;&#x529F;&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;data&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;userId&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;userName&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;company&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;token&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;password&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;companyId&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;expiresTime&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;flag&quot;</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>Object</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>userId</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x7528;&#x6237;id</td>
+</tr>
+<tr>
+<td><code>userName</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x7528;&#x6237;&#x540D;</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x5BC6;&#x7801;</td>
+</tr>
+<tr>
+<td><code>company</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x6240;&#x5C5E;&#x4F01;&#x4E1A;</td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>Token</td>
+</tr>
+<tr>
+<td><code>companyId</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x6240;&#x5C5E;&#x4F01;&#x4E1A;Id</td>
+</tr>
+<tr>
+<td><code>expiresTime</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>token&#x5931;&#x6548;&#x5468;&#x671F;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x83B7;&#x53D6;&#x7528;&#x6237;&#x4E0B;&#x6240;&#x6709;&#x7684;&#x8F66;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/VsOpenAPI/vehicle/addVehicleInfo</a></p>
 <h2 class="mume-header" id="%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E-%E9%BB%98%E8%AE%A4post%E8%AF%B7%E6%B1%82">&#x63A5;&#x53E3;&#x8BF4;&#x660E; (&#x9ED8;&#x8BA4;post&#x8BF7;&#x6C42;)</h2>
 
 <h3 class="mume-header" id="%E8%BD%A6%E8%BE%86%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF">&#x8F66;&#x8F86;&#x57FA;&#x672C;&#x4FE1;&#x606F;</h3>
 
 <ul>
-<li>
-<p>&#x6DFB;&#x52A0;&#x8F66;&#x8F86;&#x4FE1;&#x606F;</p>
-</li>
-<li>
-<p>&#x83B7;&#x53D6;&#x7528;&#x6237;&#x4E0B;&#x6240;&#x6709;&#x7684;&#x8F66;</p>
-</li>
-<li>
-<p>&#x6839;&#x636E;&#x8F66;&#x8F86;id&#x67E5;&#x8BE2;</p>
-</li>
-<li>
-<p>&#x6839;&#x636E;&#x8F66;&#x8F86;id&#x4FEE;&#x6539;&#x8F66;&#x8F86;&#x4FE1;&#x606F;</p>
-</li>
-<li>
-<p>&#x6839;&#x636E;&#x8F66;&#x8F86;id&#x5220;&#x9664;&#x8F66;&#x8F86;&#x4FE1;&#x606F;</p>
-</li>
+<li>&#x6DFB;&#x52A0;&#x8F66;&#x8F86;&#x4FE1;&#x606F;</li>
 </ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/VsOpenAPI/vehicle/addVehicleInfo</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>token</code></td>
+<td>&#x4EE4;&#x724C;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>plateNo</code></td>
+<td>&#x8F66;&#x724C;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>plateColor</code></td>
+<td>&#x8F66;&#x724C;&#x989C;&#x8272;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>depId</code></td>
+<td>&#x6240;&#x5C5E;&#x90E8;&#x95E8;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>&#x8F66;&#x7C4D;&#x5730;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>industry</code></td>
+<td>&#x884C;&#x4E1A;&#x7C7B;&#x578B;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehicleType</code></td>
+<td>&#x8F66;&#x8F86;&#x7C7B;&#x578B;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>carryCapacity</code></td>
+<td>&#x8F7D;&#x91CD;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehLength</code></td>
+<td>&#x8F66;&#x8F86;&#x957F;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehWidth</code></td>
+<td>&#x8F66;&#x8F86;&#x5BBD;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehHeight</code></td>
+<td>&#x8F66;&#x8F86;&#x9AD8;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>runStatus</code></td>
+<td>&#x8FD0;&#x884C;&#x72B6;&#x6001;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termType</code></td>
+<td>&#x7EC8;&#x7AEF;&#x7C7B;&#x578B;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>simNo</code></td>
+<td>&#x7EC8;&#x7AEF;&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termId</code></td>
+<td>&#x7ED1;&#x5B9A;&#x7EC8;&#x7AEF;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termNo</code></td>
+<td>&#x552F;&#x4E00;&#x7EC8;&#x7AEF;&#x53F7;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termState</code></td>
+<td>&#x8BBE;&#x5907;&#x72B6;&#x6001;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>installTime</code></td>
+<td>&#x5B89;&#x88C5;&#x65F6;&#x95F4;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>videoChannelNum</code></td>
+<td>&#x89C6;&#x9891;&#x901A;&#x9053;&#x6570;	Nu</td>
+<td><code>mber</code> `</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">&quot;flag&quot;</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;data&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x83B7;&#x53D6;&#x7528;&#x6237;&#x4E0B;&#x6240;&#x6709;&#x7684;&#x8F66;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/VsOpenAPI/vehicle/getAllVehicleInfo</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>token</code></td>
+<td>&#x4EE4;&#x724C;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>userid</code></td>
+<td>&#x7528;&#x6237;id</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">&quot;flag&quot;</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;data&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token string">&quot;plateNo&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;onlineStatus&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;lastDate&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	 <span class="token string">&quot;createDate&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+ 	<span class="token string">&quot;vehicleId&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span>
+
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+<tr>
+<td><code>plateNo</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8F66;&#x724C;&#x53F7;</td>
+</tr>
+<tr>
+<td><code>onlineStatus</code></td>
+<td><code>number</code></td>
+<td></td>
+<td>&#x5728;&#x7EBF;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td><code>lastDate</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x6700;&#x540E;&#x5728;&#x7EBF;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td><code>createDate</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x521B;&#x5EFA;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td><code>vehicleId</code></td>
+<td><code>number</code></td>
+<td></td>
+<td>&#x8F66;&#x8F86;id</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x6839;&#x636E;&#x8F66;&#x8F86;id&#x67E5;&#x8BE2;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/VsOpenAPI/vehicle/getVehicleInfoByVehicleId</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>token</code></td>
+<td>&#x4EE4;&#x724C;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>vehicleId</code></td>
+<td>&#x8F66;&#x8F86;id</td>
+<td><code>Number</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">&quot;flag&quot;</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;data&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token string">&quot;industry&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;region&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;vehicleType&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;plateColor&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;simNo&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;runStatus&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;depId&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;plateNo&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;carryCapacity&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;vehLength&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;vehWidth&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;vehHeight&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;termType&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;termId&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;termNo&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;termState&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;installTime&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;videoChannelNum&quot;</span><span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+<tr>
+<td><code>plateNo</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8F66;&#x724C;&#x53F7;</td>
+</tr>
+<tr>
+<td><code>plateColor</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8F66;&#x724C;&#x989C;&#x8272;</td>
+</tr>
+<tr>
+<td><code>depId</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8F66;&#x8F86;&#x7EC4;</td>
+</tr>
+<tr>
+<td><code>industry</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x884C;&#x4E1A;&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8F66;&#x7C4D;&#x5730;</td>
+</tr>
+<tr>
+<td><code>vehicleType</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8F66;&#x8F86;&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><code>carryCapacity</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x8F7D;&#x91CD;</td>
+</tr>
+<tr>
+<td><code>vehLength</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x8F66;&#x8F86;&#x957F;</td>
+</tr>
+<tr>
+<td><code>vehWidth</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x5BBD;</td>
+</tr>
+<tr>
+<td><code>vehHeight</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x9AD8;</td>
+</tr>
+<tr>
+<td><code>runStatus</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x8FD0;&#x884C;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td><code>simNo</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x7EC8;&#x7AEF;&#x5361;&#x53F7;</td>
+</tr>
+<tr>
+<td><code>termType</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x7EC8;&#x7AEF;&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><code>termId</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x7ED1;&#x5B9A;&#x7EC8;&#x7AEF;</td>
+</tr>
+<tr>
+<td><code>termNo</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x552F;&#x4E00;&#x7EC8;&#x7AEF;&#x53F7;</td>
+</tr>
+<tr>
+<td><code>termState</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x7EC8;&#x7AEF;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td><code>installTime</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x5B89;&#x88C5;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td><code>videoChannelNum</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x89C6;&#x9891;&#x901A;&#x9053;&#x6570;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x6839;&#x636E;&#x8F66;&#x8F86;id&#x4FEE;&#x6539;&#x8F66;&#x8F86;&#x4FE1;&#x606F;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/VsOpenAPI/vehicle/updateVehicleById</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Token&#xFF08;head&#xFF09;</code></td>
+<td>&#x4EE4;&#x724C;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>vehicleId</code></td>
+<td>&#x8F66;&#x8F86;id</td>
+<td><code>Number</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>plateNo</code></td>
+<td>&#x8F66;&#x724C;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>plateColor</code></td>
+<td>&#x8F66;&#x724C;&#x989C;&#x8272;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>depId</code></td>
+<td>&#x8F66;&#x8F86;&#x7EC4;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>industry</code></td>
+<td>&#x884C;&#x4E1A;&#x7C7B;&#x578B;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>&#x8F66;&#x7C4D;&#x5730;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehicleType</code></td>
+<td>&#x8F66;&#x8F86;&#x7C7B;&#x578B;</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>carryCapacity</code></td>
+<td>&#x8F7D;&#x91CD;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehLength</code></td>
+<td>&#x8F66;&#x8F86;&#x957F;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehWidth</code></td>
+<td>&#x5BBD;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vehHeight</code></td>
+<td>&#x9AD8;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>runStatus</code></td>
+<td>&#x8FD0;&#x884C;&#x72B6;&#x6001;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>simNo</code></td>
+<td>&#x7EC8;&#x7AEF;&#x5361;&#x53F7;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termType</code></td>
+<td>&#x7EC8;&#x7AEF;&#x7C7B;&#x578B;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termId</code></td>
+<td>&#x7ED1;&#x5B9A;&#x7EC8;&#x7AEF;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termNo</code></td>
+<td>&#x552F;&#x4E00;&#x7EC8;&#x7AEF;&#x53F7;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>termState</code></td>
+<td>&#x7EC8;&#x7AEF;&#x72B6;&#x6001;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>installTime</code></td>
+<td>&#x5B89;&#x88C5;&#x65F6;&#x95F4;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>videoChannelNum</code></td>
+<td>&#x89C6;&#x9891;&#x901A;&#x9053;&#x6570;</td>
+<td><code>Number</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">&quot;flag&quot;</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;data&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x6839;&#x636E;&#x8F66;&#x8F86;id&#x5220;&#x9664;&#x8F66;&#x8F86;&#x4FE1;&#x606F;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/VsOpenAPI/vehicle/updateVehicleById</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Token&#xFF08;head&#xFF09;</code></td>
+<td>&#x4EE4;&#x724C;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>vehicleIdList</code></td>
+<td>&#x8F66;&#x8F86;id&#x96C6;&#x5408;</td>
+<td><code>Array</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>vehicleId</code></td>
+<td>&#x8F66;&#x8F86;id</td>
+<td><code>Number</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">&quot;flag&quot;</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;data&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+</tbody>
+</table>
 <h3 class="mume-header" id="%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91">&#x5B9E;&#x65F6;&#x89C6;&#x9891;</h3>
 
 <ul>
-<li>
-<p>&#x4E0B;&#x53D1;&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x63A5;&#x53E3;</p>
-</li>
-<li>
-<p>&#x89C6;&#x9891;&#x5FC3;&#x8DF3;&#x63A5;&#x53E3;&#xFF08;&#x4E0B;&#x53D1;&#x83B7;&#x53D6;&#x5230;&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x5730;&#x5740;&#x9700;&#x8981;&#x6BCF;&#x9694;15s&#x5B9A;&#x65F6;&#x53D1;&#x9001;	&#x5FC3;&#x8DF3;&#x63A5;&#x53E3;&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x5173;&#x95ED;&#x89C6;&#x9891;&#x63A8;&#x6D41;&#xFF09;</p>
-</li>
-<li>
-<p>&#x505C;&#x6B62;&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x63A5;&#x53E3;</p>
-</li>
+<li>&#x4E0B;&#x53D1;&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x63A5;&#x53E3;</li>
 </ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/videoapi/openVideo</a></p>
+<p>&#x8BF7;&#x6C42;&#x6837;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">&quot;simNo&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;13536085018&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;channelNums&quot;</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;streamType&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;mediaType&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;0&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simNo</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>streamType</code></td>
+<td>&#x7801;&#x6D41;&#x7C7B;&#x578B; 0&#xFF1A;&#x4E3B;&#x7801;&#x6D41;&#xFF0C;1&#xFF1A;&#x5B50;&#x7801;&#x6D41; &#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>mediaType</code></td>
+<td>&#x5A92;&#x4F53;&#x7C7B;&#x578B; 0&#xFF1A;&#x97F3;&#x89C6;&#x9891;&#xFF0C;1&#xFF1A;&#x89C6;&#x9891;&#xFF0C;2&#xFF1A;&#x53CC;&#x5411;&#x5BF9;&#x8BB2;&#xFF0C;3&#xFF1A;&#x76D1;&#x542C;&#xFF0C;4&#xFF1A;&#x4E2D;&#x5FC3;&#x5E7F;&#x64AD;&#xFF0C;5&#xFF1A; &#x900F;&#x4F20; &#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>channelNums</code></td>
+<td>&#x8F66;&#x8F86;&#x901A;&#x9053;&#x6570;</td>
+<td><code>Array</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+    flag <span class="token punctuation">:</span> <span class="token boolean">true</span>       			
+    code<span class="token punctuation">:</span><span class="token number">1000</span>					
+    message<span class="token punctuation">:</span><span class="token string">&apos;&#x6210;&#x529F;&apos;</span>				
+    data <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        sessionId<span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span>			
+        videoList<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>				
+            channelId<span class="token punctuation">:</span> <span class="token number">1</span>		
+            url<span class="token punctuation">:</span><span class="token string">&apos;&apos;</span>			
+        <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x7528;&#x6765;&#x786E;&#x8BA4;&#x7528;&#x6237;&#x67E5;&#x770B;&#x89C6;&#x9891;&#x7684;&#x6807;&#x5FD7;</td>
+</tr>
+<tr>
+<td><code>videoList</code></td>
+<td><code>Array</code></td>
+<td></td>
+<td>&#x63A8;&#x6D41;&#x5730;&#x5740;&#x5217;&#x8868;</td>
+</tr>
+<tr>
+<td><code>channelId</code></td>
+<td><code>int</code></td>
+<td></td>
+<td>&#x5BF9;&#x5E94;&#x901A;&#x9053;&#x53F7;</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x63A8;&#x6D41;&#x5730;&#x5740;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x89C6;&#x9891;&#x5FC3;&#x8DF3;&#x63A5;&#x53E3;&#xFF08;&#x4E0B;&#x53D1;&#x83B7;&#x53D6;&#x5230;&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x5730;&#x5740;&#x9700;&#x8981;&#x6BCF;&#x9694;15s&#x5B9A;&#x65F6;&#x53D1;&#x9001;	&#x5FC3;&#x8DF3;&#x63A5;&#x53E3;&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x5173;&#x95ED;&#x89C6;&#x9891;&#x63A8;&#x6D41;&#xFF09;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/videoapi/heartBeat</a> (<code>&#x8868;&#x5355;&#x8BF7;&#x6C42;</code>)</p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simNo</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x63A5;&#x53E3;&#x8FD4;&#x56DE;&#x7684;&#x7528;&#x6237;&#x6807;&#x5FD7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+&#x201C;flag&#x201D; <span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>       			
+&#x201C;code&#x201D;<span class="token punctuation">:</span><span class="token number">1000</span>	<span class="token punctuation">,</span>				
+&#x201C;message&#x201D;<span class="token punctuation">:</span>&#x201D;&#x6210;&#x529F;&#x201D;				
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x505C;&#x6B62;&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x63A5;&#x53E3;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/videoapi/closeVideo</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simNo</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>channelNums</code></td>
+<td>&#x901A;&#x9053;&#x6570;</td>
+<td><code>List&lt;Integer&gt;</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>&#x89C6;&#x9891;&#x76F4;&#x64AD;&#x63A5;&#x53E3;&#x8FD4;&#x56DE;&#x7684;&#x7528;&#x6237;&#x6807;&#x5FD7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+&#x201C;flag&#x201D; <span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>       			
+&#x201C;code&#x201D;<span class="token punctuation">:</span><span class="token number">1000</span>	<span class="token punctuation">,</span>				
+&#x201C;message&#x201D;<span class="token punctuation">:</span>&#x201D;&#x6210;&#x529F;&#x201D;				
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x5185;&#x5BB9;</td>
+</tr>
+</tbody>
+</table>
 <h3 class="mume-header" id="%E8%A7%86%E9%A2%91%E5%9B%9E%E6%94%BE">&#x89C6;&#x9891;&#x56DE;&#x653E;</h3>
 
 <ul>
-<li>
-<p>&#x4E0B;&#x53D1;&#x5386;&#x53F2;&#x89C6;&#x9891;&#x8D44;&#x6E90;&#x5217;&#x8868;&#x67E5;&#x8BE2;&#x6307;&#x4EE4;</p>
-</li>
-<li>
-<p>&#x6839;&#x636E;&#x6307;&#x4EE4;Id&#x67E5;&#x8BE2;&#x97F3;&#x89C6;&#x9891;&#x8D44;&#x6E90;&#x5217;&#x8868;&#xFF08;&#x56E0;&#x4E3A;&#x8BBE;&#x5907;&#x4E0A;&#x4F20;&#x97F3;&#x89C6;&#x9891;&#x8D44;&#x6E90;&#x5217;&#x8868;	&#x9700;&#x8981;&#x65F6;&#x95F4;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x8F6E;&#x8BE2;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#xFF09;</p>
-</li>
-<li>
-<p>&#x4E0B;&#x53D1;&#x8FDC;&#x7A0B;&#x56DE;&#x653E;&#x6307;&#x4EE4;</p>
-</li>
-<li>
-<p>&#x4E0B;&#x53D1;&#x8FDC;&#x7A0B;&#x56DE;&#x653E;&#x63A7;&#x5236;&#x6307;&#x4EE4;</p>
-</li>
+<li>&#x4E0B;&#x53D1;&#x5386;&#x53F2;&#x89C6;&#x9891;&#x8D44;&#x6E90;&#x5217;&#x8868;&#x67E5;&#x8BE2;&#x6307;&#x4EE4;</li>
 </ul>
-<h2 class="mume-header" id="%E6%96%87%E4%BB%B6%E5%BC%95%E5%85%A5">&#x6587;&#x4EF6;&#x5F15;&#x5165;</h2>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/videoapi/videoPlayBack/getResourceListWeb</a></p>
+<p>&#x8BF7;&#x6C42;&#x6837;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+ <span class="token string">&quot;simNo&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;13536085018&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;channelId&quot;</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;startTime&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;2020-04-28 00:00:00&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;endTime&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;2020-04-28 23:59:59&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;storeType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;streamType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;dataType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;userId&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;userName&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simNo</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>&#x901A;&#x9053;&#x6570;</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>startTime</code></td>
+<td>&#x5F00;&#x59CB;&#x65F6;&#x95F4;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>endTime</code></td>
+<td>&#x7ED3;&#x675F;&#x65F6;&#x95F4;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>streamType</code></td>
+<td>&#x7801;&#x6D41;&#x7C7B;&#x578B; 0&#xFF1A;&#x4E3B;&#x7801;&#x6D41;&#xFF0C;1&#xFF1A;&#x5B50;&#x7801;&#x6D41; &#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>storeType</code></td>
+<td>&#x5B58;&#x50A8;&#x5668;&#x7C7B;&#x578B;0&#xFF1A;&#x6240;&#x6709;&#x5B58;&#x50A8;&#x5668;&#xFF0C;1&#xFF1A;&#x4E3B;&#x5B58;&#x50A8;&#x5668;&#xFF0C;2&#xFF1A;&#x707E;&#x5907;&#x5B58;&#x50A8;&#x5668;&#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>dataType</code></td>
+<td>&#x5A92;&#x4F53;&#x7C7B;&#x578B;0&#xFF1A;&#x97F3;&#x89C6;&#x9891;&#xFF0C;1&#xFF1A;&#x97F3;&#x9891;&#xFF0C;2&#xFF1A;&#x89C6;&#x9891;&#xFF0C;3&#xFF1A;&#x89C6;&#x9891;&#x6216;&#x97F3;&#x89C6;&#x9891;</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+    flag <span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>       			
+    code<span class="token punctuation">:</span> <span class="token number">1000</span>	<span class="token punctuation">,</span>				
+    message<span class="token punctuation">:</span><span class="token string">&apos;&#x6210;&#x529F;&apos;</span><span class="token punctuation">,</span>
+    data<span class="token punctuation">:</span> <span class="token string">&apos;46481564642131548&apos;</span>	
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x7684;&#x6307;&#x4EE4;Id</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x6839;&#x636E;&#x6307;&#x4EE4;Id&#x67E5;&#x8BE2;&#x97F3;&#x89C6;&#x9891;&#x8D44;&#x6E90;&#x5217;&#x8868;&#xFF08;&#x56E0;&#x4E3A;&#x8BBE;&#x5907;&#x4E0A;&#x4F20;&#x97F3;&#x89C6;&#x9891;&#x8D44;&#x6E90;&#x5217;&#x8868;	&#x9700;&#x8981;&#x65F6;&#x95F4;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x8F6E;&#x8BE2;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#xFF09;( <code>form&#x8868;&#x5355;&#x8BF7;&#x6C42;</code> )</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/videoapi/videoPlayBack/getResourceListById</a></p>
+<p>&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simNo</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>commandId</code></td>
+<td>&#x6307;&#x4EE4;id</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+    &#x201C;flag&#x201D; <span class="token punctuation">:</span> <span class="token boolean">true</span>       			<span class="token comment">//&#x662F;&#x5426;&#x8BF7;&#x6C42;&#x6210;&#x529F;</span>
+    &#x201C;code&#x201D;<span class="token punctuation">:</span><span class="token number">1000</span>					<span class="token comment">//&#x72B6;&#x6001;&#x7801;</span>
+    &#x201C;message&#x201D;<span class="token punctuation">:</span>&#x201D;&#x6210;&#x529F;&#x201D;				<span class="token comment">//&#x4FE1;&#x606F;</span>
+    &#x201C;data&#x201D;<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>						<span class="token comment">//&#x97F3;&#x89C6;&#x9891;&#x8D44;&#x6E90;&#x5217;&#x8868;</span>
+    &#x201C;channelId&#x201D;<span class="token punctuation">:</span>int			
+    &#x201C;startDate&#x201D;<span class="token punctuation">:</span>date			
+    &#x201C;endDate&#x201D;<span class="token punctuation">:</span>date			
+    &#x201C;dataType&#x201D;<span class="token punctuation">:</span>int				
+    &#x201C;streamType&#x201D;<span class="token punctuation">:</span>int			
+    &#x201C;storeType&#x201D;<span class="token punctuation">:</span>int			
+    &#x201C;fileLength&#x201D;<span class="token punctuation">:</span>long			
+    <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x7684;&#x6307;&#x4EE4;Id</td>
+</tr>
+<tr>
+<td><code>channelId</code></td>
+<td><code>Integer</code></td>
+<td></td>
+<td>&#x901A;&#x9053;&#x53F7;</td>
+</tr>
+<tr>
+<td><code>startDate</code></td>
+<td><code>Date</code></td>
+<td></td>
+<td>&#x5F00;&#x59CB;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td><code>endDate</code></td>
+<td><code>Date</code></td>
+<td></td>
+<td>&#x7ED3;&#x675F;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td><code>dataType</code></td>
+<td><code>Integer</code></td>
+<td></td>
+<td>&#x5A92;&#x4F53;&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><code>streamType</code></td>
+<td><code>Integer</code></td>
+<td></td>
+<td>&#x7801;&#x6D41;&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><code>storeType</code></td>
+<td><code>Integer</code></td>
+<td></td>
+<td>&#x5B58;&#x50A8;&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td><code>fileLength</code></td>
+<td><code>Long</code></td>
+<td></td>
+<td>&#x6587;&#x4EF6;&#x5927;&#x5C0F;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x4E0B;&#x53D1;&#x8FDC;&#x7A0B;&#x56DE;&#x653E;&#x6307;&#x4EE4;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/videoapi/videoPlayBack/sendVideoPlayBackCommandWeb</a></p>
+<p>&#x8BF7;&#x6C42;&#x6837;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+<span class="token string">&quot;simNo&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;13536085018&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;channelId&quot;</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;startTime&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;2020-04-28 00:00:00&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;endTime&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;2020-04-28 23:59:59&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;storeType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;streamType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;dataType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;playBackType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;times&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;userId&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;userName&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simNo</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>channelId</code></td>
+<td>&#x5355;&#x4E2A;&#x901A;&#x9053;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>startTime</code></td>
+<td>&#x5F00;&#x59CB;&#x65F6;&#x95F4;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>endTime</code></td>
+<td>&#x7ED3;&#x675F;&#x65F6;&#x95F4;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>streamType</code></td>
+<td>&#x7801;&#x6D41;&#x7C7B;&#x578B; 0&#xFF1A;&#x4E3B;&#x7801;&#x6D41;&#xFF0C;1&#xFF1A;&#x5B50;&#x7801;&#x6D41; &#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>storeType</code></td>
+<td>&#x5B58;&#x50A8;&#x5668;&#x7C7B;&#x578B;0&#xFF1A;&#x6240;&#x6709;&#x5B58;&#x50A8;&#x5668;&#xFF0C;1&#xFF1A;&#x4E3B;&#x5B58;&#x50A8;&#x5668;&#xFF0C;2&#xFF1A;&#x707E;&#x5907;&#x5B58;&#x50A8;&#x5668;&#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>playBackType</code></td>
+<td>&#x56DE;&#x653E;&#x7C7B;&#x578B;&#xFF0C;0&#x6B63;&#x5E38;&#x56DE;&#x653E;&#xFF0C;1&#x5FEB;&#x8FDB;&#x56DE;&#x653E;&#xFF0C;2&#x5FEB;&#x9000;&#x56DE;&#x653E;&#xFF0C;&#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>dataType</code></td>
+<td>&#x5A92;&#x4F53;&#x7C7B;&#x578B;0&#xFF1A;&#x97F3;&#x89C6;&#x9891;&#xFF0C;1&#xFF1A;&#x97F3;&#x9891;&#xFF0C;2&#xFF1A;&#x89C6;&#x9891;&#xFF0C;3&#xFF1A;&#x89C6;&#x9891;&#x6216;&#x97F3;&#x89C6;&#x9891;</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>times</code></td>
+<td>&#x5FEB;&#x8FDB;&#x6216;&#x5FEB;&#x9000;&#x65B9;&#x5F0F;&#xFF0C;&#x56DE;&#x653E;&#x65B9;&#x5F0F;&#x4E3A;1&#x6216;&#x8005;2&#x7684;&#x65F6;&#x5019;&#x6709;&#x6548;&#xFF0C;&#x5426;&#x5219;&#x7F6E;0&#xFF0C;0.&#x65E0;&#x6548;&#xFF0C;1.&#x4E00;&#x500D;&#xFF0C;2.&#x4E24;&#x500D;&#xFF0C;3.&#x56DB;&#x500D;&#xFF0C;4.&#x516B;&#x500D;&#xFF0C;5.&#x5341;&#x516D;&#x500D;&#xFF0C;&#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+    &#x201C;flag&#x201D; <span class="token punctuation">:</span> <span class="token boolean">true</span>       			
+    &#x201C;code&#x201D;<span class="token punctuation">:</span><span class="token number">1000</span>					
+    &#x201C;message&#x201D;<span class="token punctuation">:</span>&#x201D;&#x6210;&#x529F;&#x201D;				
+    &#x201C;data&#x201D; <span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        &#x201C;sessionId&#x201D;<span class="token punctuation">:</span>String			
+        &#x201C;videoList&#x201D;<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>				
+            &#x201C;channelId&#x201D;<span class="token punctuation">:</span>int		
+            &#x201C;url&#x201D;<span class="token punctuation">:</span>String			
+        <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x7684;&#x6307;&#x4EE4;Id</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x7528;&#x6765;&#x786E;&#x8BA4;&#x7528;&#x6237;&#x67E5;&#x770B;&#x89C6;&#x9891;&#x7684;&#x6807;&#x5FD7;</td>
+</tr>
+<tr>
+<td><code>videoList</code></td>
+<td><code>Array</code></td>
+<td></td>
+<td>&#x63A8;&#x6D41;&#x5730;&#x5740;&#x5217;&#x8868;</td>
+</tr>
+<tr>
+<td><code>channelId</code></td>
+<td><code>Number</code></td>
+<td></td>
+<td>&#x5BF9;&#x5E94;&#x901A;&#x9053;&#x53F7;</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>String</code></td>
+<td></td>
+<td>&#x63A8;&#x6D41;&#x5730;&#x5740;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x4E0B;&#x53D1;&#x8FDC;&#x7A0B;&#x56DE;&#x653E;&#x63A7;&#x5236;&#x6307;&#x4EE4;</li>
+</ul>
+<p>&#x8BF7;&#x6C42;&#x5730;&#x5740; <a href="#">http://smartsafety.aidriving.com/videoapi/videoPlayBack/sendVideoPlayBackControlWeb</a></p>
+<p>&#x8BF7;&#x6C42;&#x6837;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+ <span class="token string">&quot;simNo&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;13536085018&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;channelId&quot;</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;controlType&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;playBackTime&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;times&quot;</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;userId&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;userName&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;&quot;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x662F;&#x5426;&#x5FC5;&#x9009;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>simNo</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>channelId</code></td>
+<td>&#x5355;&#x4E2A;&#x901A;&#x9053;&#x53F7;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>controlType</code></td>
+<td>&#x7801;&#x6D41;&#x7C7B;&#x578B; 0&#xFF1A;&#x4E3B;&#x7801;&#x6D41;&#xFF0C;1&#xFF1A;&#x5B50;&#x7801;&#x6D41; &#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>playBackTime</code></td>
+<td>&#x62D6;&#x52A8;&#x56DE;&#x653E;&#x4F4D;&#x7F6E;,YY-MM-DD-HH-MM-SS&#xFF0C;&#x56DE;&#x653E;&#x63A7;&#x5236;&#x4E3A;5&#x65F6;&#xFF0C;&#x6B64;&#x5B57;&#x6BB5;&#x6709;&#x6548;</td>
+<td><code>String</code></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><code>times</code></td>
+<td>&#x5FEB;&#x8FDB;&#x6216;&#x5FEB;&#x9000;&#x65B9;&#x5F0F;&#xFF0C;&#x56DE;&#x653E;&#x65B9;&#x5F0F;&#x4E3A;1&#x6216;&#x8005;2&#x7684;&#x65F6;&#x5019;&#x6709;&#x6548;&#xFF0C;&#x5426;&#x5219;&#x7F6E;0&#xFF0C;0.&#x65E0;&#x6548;&#xFF0C;1.&#x4E00;&#x500D;&#xFF0C;2.&#x4E24;&#x500D;&#xFF0C;3.&#x56DB;&#x500D;&#xFF0C;4.&#x516B;&#x500D;&#xFF0C;5.&#x5341;&#x516D;&#x500D;&#xFF0C;&#x9ED8;&#x8BA4;0</td>
+<td><code>Int</code></td>
+<td>&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+    &#x201C;flag&#x201D; <span class="token punctuation">:</span> <span class="token boolean">true</span>       			
+    &#x201C;code&#x201D;<span class="token punctuation">:</span><span class="token number">1000</span>					
+    &#x201C;message&#x201D;<span class="token punctuation">:</span>&#x201D;&#x6210;&#x529F;&#x201D;				
+    &#x201C;data&#x201D; <span class="token punctuation">:</span> &#x201C;&#x201D;
+<span class="token punctuation">}</span>
+</pre><p>&#x8FD4;&#x56DE;&#x53C2;&#x6570;&#x5217;&#x8868;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x8BF4;&#x660E;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x521D;&#x59CB;&#x503C;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flag</code></td>
+<td><code>Boolean</code></td>
+<td></td>
+<td>&#x662F;&#x5426;&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>Number</code></td>
+<td>1000</td>
+<td>&#x8FD4;&#x56DE;&#x7801;</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>String</code></td>
+<td>&#x6210;&#x529F;</td>
+<td>&#x8FD4;&#x56DE;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="%E9%99%84%E5%BD%95">&#x9644;&#x5F55;</h3>
 
+<ul>
+<li>&#x9644;&#x5F55; A&#xFF1A;&#x72B6;&#x6001;&#x7801;&#x8BF4;&#x660E;</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>&#x72B6;&#x6001;&#x7801;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1000</code></td>
+<td>&#x6210;&#x529F;</td>
+</tr>
+<tr>
+<td><code>2001</code></td>
+<td>Token&#x5931;&#x6548;</td>
+</tr>
+<tr>
+<td><code>2002</code></td>
+<td>&#x8BF7;&#x6C42;&#x5934;&#x7F3A;&#x5C11;&#x53C2;&#x6570;</td>
+</tr>
+<tr>
+<td><code>2003</code></td>
+<td>&#x767B;&#x5165;&#x5931;&#x8D25;</td>
+</tr>
+<tr>
+<td><code>2004</code></td>
+<td>&#x9000;&#x51FA;&#x5931;&#x8D25;</td>
+</tr>
+<tr>
+<td><code>3004</code></td>
+<td>&#x7528;&#x6237;&#x540D;&#x6216;&#x5BC6;&#x7801;&#x9519;&#x8BEF;</td>
+</tr>
+<tr>
+<td><code>3001</code></td>
+<td>&#x672A;&#x77E5;&#x9519;&#x8BEF;</td>
+</tr>
+<tr>
+<td><code>3006</code></td>
+<td>&#x8BF7;&#x9009;&#x62E9;&#x8F66;&#x724C;</td>
+</tr>
+<tr>
+<td><code>2007</code></td>
+<td>&#x8BF7;&#x8F93;&#x5165;&#x7528;&#x6237;id</td>
+</tr>
+<tr>
+<td><code>5000</code></td>
+<td>&#x9519;&#x8BEF;&#x6307;&#x4EE4;</td>
+</tr>
+<tr>
+<td><code>3002</code></td>
+<td>&#x9519;&#x8BEF;&#x7684;&#x6A21;&#x5F0F;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td><code>3003</code></td>
+<td>&#x7F3A;&#x5C11;&#x5FC5;&#x8981;&#x53C2;&#x6570;</td>
+</tr>
+<tr>
+<td><code>4001</code></td>
+<td>&#x6570;&#x636E;&#x4E0D;&#x5B58;&#x5728;</td>
+</tr>
+<tr>
+<td><code>4002</code></td>
+<td>&#x8F66;&#x724C;&#x53F7;&#x5DF2;&#x5B58;&#x5728;&#xFF0C;&#x4E0D;&#x80FD;&#x91CD;&#x590D;&#x6DFB;&#x52A0;</td>
+</tr>
+<tr>
+<td><code>4003</code></td>
+<td>&#x90E8;&#x95E8;&#x540D;&#x79F0;&#x5DF2;&#x5B58;&#x5728;&#xFF0C;&#x4E0D;&#x80FD;&#x91CD;&#x590D;&#x6DFB;&#x52A0;</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="aidrvingjs">aidrving.js</h2>
+
+<h3 class="mume-header" id="%E5%85%BC%E5%AE%B9%E6%80%A7">&#x517C;&#x5BB9;&#x6027;</h3>
+
+<p><code>aidiving.js</code>&#x4E0D;&#x652F;&#x6301;IE&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x56E0;<code>aidiving.js</code>&#x4F7F;&#x7528;&#x4E86;<code>ES6</code>&#x7684;&#x7279;&#x6027;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;<a href="https://v.car900.com/resource/ChromeSetup.exe">Chrome&#x6D4F;&#x89C8;&#x5668;</a></p>
 <h3 class="mume-header" id="css%E5%BC%95%E5%85%A5">css&#x5F15;&#x5165;</h3>
 
 <ul>
@@ -404,11 +2098,18 @@ HTTPS&#xFF08;&#x5168;&#x79F0;&#xFF1A;Hyper Text Transfer Protocol over Secure So
 <p>&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;</p>
 <ul>
 <li><a href="#">videoPlayr.createElement</a></li>
-<li><a href="#">videoPlayr.updatePassageway</a></li>
-<li><a href="#">videoPlayr.updateVehicleNo</a></li>
 <li><a href="#">videoPlayr.play</a></li>
 <li><a href="#">videoPlayr.pause</a></li>
 <li><a href="#">videoPlayr.destroy</a></li>
+<li><a href="#">videoPlayr.showLoading</a></li>
+<li><a href="#">videoPlayr.hideLoading</a></li>
+<li><a href="#">videoPlayr.showMask</a></li>
+<li><a href="#">videoPlayr.hideMask</a></li>
+<li><a href="#">videoPlayr.timeout</a></li>
+<li><a href="#">videoPlayr.cleanTimeout</a></li>
+<li><a href="#">videoPlayr.screenshots</a></li>
+<li><a href="#">videoPlayr.fullScreen</a></li>
+<li><a href="#">videoPlayr.exitFullscreen</a></li>
 <li><a href="#">videoPlayr.getVideoUrl</a></li>
 <li><a href="#">videoPlayr.destroyCallback</a></li>
 </ul>
@@ -417,6 +2118,82 @@ HTTPS&#xFF08;&#x5168;&#x79F0;&#xFF1A;Hyper Text Transfer Protocol over Secure So
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">let</span> videoPlyer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">videoPlayer</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span>
 </pre><p>&#x6839;&#x636E;<code>config</code>&#x521B;&#x5EFA;<code>byskplayer</code>&#x5B9E;&#x4F8B;</p>
 <p><strong>config</strong></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;&#x540D;&#x79F0;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sim</td>
+<td><code>string</code></td>
+<td>SIM&#x5361;&#x53F7;</td>
+</tr>
+<tr>
+<td>playType</td>
+<td><code>string</code></td>
+<td>&#x64AD;&#x653E;&#x7C7B;&#x578B;&#xFF1A; <code>broadcast</code>&#xFF1A;&#x89C6;&#x9891;&#x76F4;&#x64AD;&#xFF0C; <code>playback</code> : &#x89C6;&#x9891;&#x56DE;&#x653E;</td>
+</tr>
+<tr>
+<td>passageway</td>
+<td><code>number</code></td>
+<td>&#x901A;&#x9053;&#x53F7;</td>
+</tr>
+<tr>
+<td>getVideoUrl</td>
+<td><code>Function</code></td>
+<td>&#x83B7;&#x53D6;&#x89C6;&#x9891;url</td>
+</tr>
+<tr>
+<td>destroyCallback</td>
+<td><code>Function</code></td>
+<td>&#x9500;&#x6BC1;&#x89C6;&#x9891;&#x5BF9;&#x8C61;&#x56DE;&#x8C03;&#x51FD;&#x6570;</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="videoplayrcreateelement">videoPlayr.createElement()</h3>
+
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">let</span> element <span class="token operator">=</span> videoPlayer<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>&#x8FD4;&#x56DE;&#x89C6;&#x9891;&#x6807;&#x7B7E;&#x5B57;&#x7B26;&#x4E32;</p>
+<h3 class="mume-header" id="videoplayrplay">videoPlayr.play()</h3>
+
+<p>&#x89C6;&#x9891;&#x64AD;&#x653E;&#x4E8B;&#x4EF6;</p>
+<h3 class="mume-header" id="videoplayrpause">videoPlayr.pause()</h3>
+
+<p>&#x89C6;&#x9891;&#x6682;&#x505C;&#x4E8B;&#x4EF6;</p>
+<h3 class="mume-header" id="videoplayrdestroy">videoPlayr.destroy()</h3>
+
+<p>&#x89C6;&#x9891;&#x9500;&#x6BC1;&#x4E8B;&#x4EF6;</p>
+<h3 class="mume-header" id="videoplayrshowloading">videoPlayr.showLoading()</h3>
+
+<p>&#x663E;&#x793A;&#x52A0;&#x8F7D;&#x52A8;&#x753B;</p>
+<h3 class="mume-header" id="videoplayrhideloading">videoPlayr.hideLoading()</h3>
+
+<p>&#x9690;&#x85CF;&#x52A0;&#x8F7D;&#x52A8;&#x753B;</p>
+<h3 class="mume-header" id="videoplayrshowmask">videoPlayr.showMask()</h3>
+
+<p>&#x663E;&#x793A;video&#x80CC;&#x666F;&#x56FE;</p>
+<h3 class="mume-header" id="videoplayrhidemask">videoPlayr.hideMask()</h3>
+
+<p>&#x9690;&#x85CF;video&#x80CC;&#x666F;&#x56FE;</p>
+<h3 class="mume-header" id="videoplayrtimeout">videoPlayr.timeout()</h3>
+
+<p>&#x542F;&#x52A8;&#x8BA1;&#x65F6;&#x5668;</p>
+<h3 class="mume-header" id="videoplayrcleantimeout">videoPlayr.cleanTimeout()</h3>
+
+<p>&#x6E05;&#x9664;&#x8BA1;&#x65F6;&#x5668;</p>
+<h3 class="mume-header" id="videoplayrscreenshots">videoPlayr.screenshots()</h3>
+
+<p>&#x622A;&#x5C4F;&#x4E8B;&#x4EF6;</p>
+<h3 class="mume-header" id="videoplayrfullscreen">videoPlayr.fullScreen()</h3>
+
+<p>&#x5168;&#x5C4F;&#x4E8B;&#x4EF6;</p>
+<h3 class="mume-header" id="videoplayrexitfullscreen">videoPlayr.exitFullscreen()</h3>
+
+<p>&#x9000;&#x51FA;&#x5168;&#x5C4F;&#x4E8B;&#x4EF6;</p>
 
       </div>
       
