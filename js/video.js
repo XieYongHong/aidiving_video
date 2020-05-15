@@ -3,7 +3,7 @@
  * @Author: xyh
  * @Date: 2020-05-15 12:28:47
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-15 17:41:34
+ * @LastEditTime: 2020-05-15 18:54:30
  */ 
 
 var aidrivingPlayer = {
@@ -46,7 +46,11 @@ var aidrivingPlayer = {
   getVideoUrl: function(ids) { // 获取视频播放url
       
       let _ids = []
-      
+      var url = this.url = $('#url').val()
+      if(!url) {
+          this.showTip('请填写资源URL地址')
+          return
+      }
       if(Array.isArray(ids)) { // 判断是单个视频播放 还是全部播放
           _ids = ids
       } else {
@@ -63,6 +67,10 @@ var aidrivingPlayer = {
   getVideoUrlAjax: function(ids) {
       var _this = this
       _this.simNo = $('#sim_number').val()
+      if(!_this.simNo) {
+        this.showTip('请输入sim卡号')
+        return
+      }
       $.ajax({
           dataType: "json",
           type: "POST",
@@ -120,6 +128,11 @@ var aidrivingPlayer = {
       var channelId = $('#channelId').val()
       var startTime = $('#start_time').val()
       var endTime = $('#end_time').val()
+      var url = _this.url = $('#url').val()
+      if(!url) {
+          this.showTip('请填写资源URL地址')
+          return
+      }
       if(!channelId) {
         this.showTip('请输入通道号')
         return

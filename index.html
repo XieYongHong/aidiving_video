@@ -65,7 +65,7 @@
                 </div>
                 <div class="cols">
                     <label>SIM卡号</label>
-                    <input id='sim_number' value="40027111687"/>
+                    <input id='sim_number'/>
                 </div>
                 <div class="cols playback" style="display: none;">
                     <label>通道号</label>
@@ -132,7 +132,7 @@
             var playType = $('#video_type').val()
             
             aidrivingPlayer.createVideos({
-                url: '/aidrivingApi',
+                url: url,
                 secretKey: secretKey,
                 playType: playType,
             })
