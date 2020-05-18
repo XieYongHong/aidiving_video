@@ -116,17 +116,17 @@ videoPlayr.prototype.createPlayer = function (src) {
                 _this.cleanTimeout() // 清除超时计时器
                 _this.hideLoading()
                 _this.hideMask()
-                _this.handleDelay()
                 // videoLoadHide($(this))
             })
             this.playStatus = 1
-    
+            
             this.video.attachMediaElement(videoElement);
-    
+            
             this.video.load();
             this.video.play();
             this.showLoading()
             this.timeout()
+            this.handleDelay()
         }
     }
 
@@ -134,7 +134,9 @@ videoPlayr.prototype.createPlayer = function (src) {
 videoPlayr.prototype.handleDelay = function() {
     if(this.videoElement) {
         var video = this.videoElement
+        this.cleanDelay()
         this.delayTimer = setInterval(() => {
+            console.log('handleDelay')
             if (!video.buffered.length) {
                 return;
             }
@@ -177,6 +179,7 @@ videoPlayr.prototype.destroy = function () { // 销毁
         this.playStatus = 0
         this.hideLoading()
         this.showMask()
+        this.cleanDelay()
     }
 }
 videoPlayr.prototype.showLoading = function () { // 显示加载动画
