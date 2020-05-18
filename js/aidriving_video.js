@@ -6,8 +6,11 @@ var videoPlayr = function (options) {
     this.playStatus = 0 // 0：停止； 1：播放； 2：暂停；
     this.getVideoUrl = options.getVideoUrl
     this.destroyCallback = options.destroyCallback
+    this.playTimeout = options.playTimeout
     this.type = options.playType || 'broadcast'
     this.video = null
+    this.videoElement = null
+    this.delayTimer = null
     this.videoClassName = '.passageway-' + this.passageway
 }
 
@@ -67,7 +70,9 @@ videoPlayr.prototype.tooBtnInit = function () { // 注册bar中的按钮事件
             case 2: // 停止
                 if(_this.playStatus === 1) {
                     _this.destroy()
-                    _this.destroyCallback(_this.passageway)
+                    if(_this.destroyCallback) {
+                        _this.destroyCallback(_this.passageway)
+                    }
                 }
                 break
             case 3: // 截屏
@@ -92,37 +97,62 @@ videoPlayr.prototype.tooBtnInit = function () { // 注册bar中的按钮事件
     })
 }
 videoPlayr.prototype.createPlayer = function (src) {
-    var videoElement = document.querySelector('#video' + this.passageway)
+    if (flvjs.isSupported()) {
+        var videoElement = this.videoElement = document.querySelector('#video' + this.passageway)
+    
+        var _this = this
+    
+        if (videoElement && src && !this.video) {
+            this.video = flvjs.createPlayer({
+                type: 'flv',
+                isLive: true,
+                hasAudio: false,
+                hasVideo: true,
+                controls: true,
+                url: src
+            })
+    
+            videoElement.addEventListener('canplay', function (e) {
+                _this.cleanTimeout() // 清除超时计时器
+                _this.hideLoading()
+                _this.hideMask()
+                _this.handleDelay()
+                // videoLoadHide($(this))
+            })
+            this.playStatus = 1
+    
+            this.video.attachMediaElement(videoElement);
+    
+            this.video.load();
+            this.video.play();
+            this.showLoading()
+            this.timeout()
+        }
+    }
 
-    var _this = this
-    console.log(src)
-
-    if (videoElement && src && !this.video) {
-        this.video = flvjs.createPlayer({
-            type: 'flv',
-            isLive: true,
-            hasAudio: false,
-            hasVideo: true,
-            controls: true,
-            url: src
-        })
-
-        videoElement.addEventListener('canplay', function (e) {
-            _this.cleanTimeout() // 清除超时计时器
-            _this.hideLoading()
-            _this.hideMask()
-            // videoLoadHide($(this))
-        })
-        this.playStatus = 1
-
-        this.video.attachMediaElement(videoElement);
-
-        this.video.load();
-        this.video.play();
-        this.showLoading()
-        this.timeout()
+}
+videoPlayr.prototype.handleDelay = function() {
+    if(this.videoElement) {
+        var video = this.videoElement
+        this.delayTimer = setInterval(() => {
+            if (!video.buffered.length) {
+                return;
+            }
+            let end = video.buffered.end(0);
+            let diff = end - video.currentTime;
+            if (diff >= 1.5) {
+                video.currentTime = end;
+            }
+        }, 3000);
     }
 }
+videoPlayr.prototype.cleanDelay = function() {
+    if(this.delayTimer) {
+        window.clearInterval(this.delayTimer)
+        this.delayTimer = null
+    }
+}
+
 videoPlayr.prototype.play = function () {
     if(this.getVideoUrl) {
         this.getVideoUrl(this.passageway)
@@ -168,6 +198,9 @@ videoPlayr.prototype.timeout = function () {  // 超时计时器
     this.timer = setTimeout(function () {
         // 显示超时提示 
         _this.playStatus = 0
+        if(_this.playTimeout) {
+            _this.playTimeout(_this.passageway)
+        }
         var dom = $('#tip_text_2')
         var status = dom.is(":hidden")
         if(status) {
