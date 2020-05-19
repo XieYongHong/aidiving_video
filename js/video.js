@@ -98,7 +98,7 @@ var aidrivingPlayer = {
           type: "POST",
           contentType: "application/json;charset-UTF-8",
           url: _this.url + _this.videoUrl,
-          data: JSON.stringify({"simNo": _this.simNo, "channelNums": ids,"streamType":"0","mediaType":"0"}),
+          data: JSON.stringify({"simNo": _this.simNo, "channelNums": ids,"streamType":"0","mediaType":"1"}),
           error: function () {
               //alert("网络连接错误，无法读取数据!");
               //Utility.done();
