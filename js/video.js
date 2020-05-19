@@ -3,28 +3,26 @@
  * @Author: xyh
  * @Date: 2020-05-15 12:28:47
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-15 18:54:30
+ * @LastEditTime: 2020-05-19 13:07:44
  */ 
 
 var aidrivingPlayer = {
-  videoList: [],
-  passageway: [],
-  channels: '',
+  videoList: [], // 视频对象数组
+  passageway: [], // 记录已播放的视频通道号
   sessionId: '',
   simNo: '',
-  tipTimer: null,
-  autoCloseTimer: null,
-  autoCloseTime: 0,
-  autoCloseTimeAcc: 0,
-  vehicleNo: '',
-  playType: 'broadcast',
-  playbackId: '',
+  tipTimer: null, // 提示计时器
+  autoCloseTimer: null, // 自动关闭计时器
+  autoCloseTime: 0, //
+  autoCloseTimeAcc: 0, // 
+  vehicleNo: '', // 车牌号
+  playType: 'broadcast', // 播放类型
   token: '',
-  url: '',
-  videoUrl: '/videoapi/openVideo',
-  stopUrl: '/videoapi/closeVideo',
-  bateUrl: '/videoapi/heartBeat',
-  getVehicleNoUrl: '/gpsroot/vehicle/getPlateNoByVehicle',
+  url: '', // 
+  videoUrl: '/videoapi/openVideo', // 获取视频地址请求
+  stopUrl: '/videoapi/closeVideo', // 停止视频请求
+  bateUrl: '/videoapi/heartBeat', // 直播心跳
+  getVehicleNoUrl: '/gpsroot/vehicle/getPlateNoByVehicle', // 获取车牌号
   playbackTimelineUrl:'/videoapi/videoPlayBack/getResourceListWeb', // 下发历史视频资源列表查询指令
   getResourceListUrl:'/videoapi/videoPlayBack/getResourceListById', // 根据指令Id查询音视频资源列表
   playbackUrl:'/videoapi/videoPlayBack/sendVideoPlayBackCommandWeb', // 下发远程回放指令
@@ -68,7 +66,6 @@ var aidrivingPlayer = {
       if(this.passageway.length) {
           this.passageway = arr.reduce(function(cur, next) {
             var obj = _ids.find(a => a === next)
-            console.log(cur,next)
             if(!obj) {
                 cur.push(obj)
             }
@@ -77,7 +74,6 @@ var aidrivingPlayer = {
       } else {
         this.passageway = _ids
       }
-      console.log(this.passageway)
 
       if(this.playType === 'broadcast') {
           this.getVideoUrlAjax(_ids)
@@ -155,10 +151,10 @@ var aidrivingPlayer = {
           this.showTip('请填写资源URL地址')
           return
       }
-      if(!token) {
-        this.showTip('请填写客户密钥')
-        return
-      }
+    //   if(!token) {
+    //     this.showTip('请填写客户密钥')
+    //     return
+    //   }
       if(!channelId) {
         this.showTip('请输入通道号')
         return
@@ -427,7 +423,6 @@ var aidrivingPlayer = {
             arr.push(a)
         }
     })
-    console.log(arr)
     this.passageway = arr
   },
   stopAll: function() { // 暂停所有视频
