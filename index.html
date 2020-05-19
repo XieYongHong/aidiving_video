@@ -12,7 +12,7 @@
 <body>
     <div class="aidriving">
         <div class="left">
-            <a href="./aidiving.api.html" target="_blank" >点击此处查看API文档</a>
+            <a href="./aidriving.api.html" target="_blank" >点击此处查看API文档</a>
             <div class="rows">
                 <div class="cols">
                     <label>资源URL地址</label>
@@ -65,11 +65,11 @@
                 </div>
                 <div class="cols">
                     <label>SIM卡号</label>
-                    <input id='sim_number' value="13699999997"/>
+                    <input id='sim_number'/>
                 </div>
                 <div class="cols playback" style="display: none;">
                     <label>通道号</label>
-                    <input id='channelId'/>
+                    <input id='channelId' value='1'/>
                 </div>
                 <div class="cols playback" style="display: none;">
                     <label>开始时间</label>
@@ -98,7 +98,6 @@
     <script src="./js/aidriving_video.js"></script>
     <!-- <script src="./js/video.js"></script> -->
     <script>
-        
 
         $('#video_type').on('change', function() {
             var val = $(this).val()
@@ -109,8 +108,17 @@
                 $('.playback').show()
                 $('.broadcast').hide()
 
-                $('#start_time').val(getTime().substring(0,11) + '00:00:00')
-                $('#end_time').val(getTime())
+                
+                var startTime = getTime().substring(0,11) + '00:00:00'
+                var endTime = getTime()
+
+                aidrivingPlayer.config.startTime = startTime
+                aidrivingPlayer.config.playStartTime = startTime
+                aidrivingPlayer.config.endTime = endTime
+                aidrivingPlayer.config.playEndTime = endTime
+
+                $('#start_time').val(startTime)
+                $('#end_time').val(endTime)
             }
         })
 
@@ -130,11 +138,21 @@
             var url = $('#url').val()
             var secretKey = $('#secret_key').val()
             var playType = $('#video_type').val()
+            if(!url) {
+                alert('请输入资源URL地址')
+                return
+            }
             
-            aidrivingPlayer.createVideos({
-                url: url,
-                secretKey: secretKey,
+            // if(!secretKey) {
+            //     alert('请输入客户密钥')
+            //     return
+            // }
+
+            aidrivingPlayer.init({
+                serverUrl: url,
+                token: secretKey,
                 playType: playType,
+                userId: '1260504305044164608'
             })
             
             $('.btns-status').css({
@@ -154,6 +172,11 @@
         })
 
         $('#play').click(function() {
+            var value = $('#sim_number').val()
+            if(!value) {
+                alert('请输入sim卡号')
+                return
+            }
 
             aidrivingPlayer.playAll()
         })
@@ -162,7 +185,25 @@
             console.log('暂停')
             aidrivingPlayer.destroyAll()
         })
-
+        
+        $("#sim_number").bind('input propertychange', function() {
+            var value = $(this).val();
+            aidrivingPlayer.config.simNo = value
+        })
+        $("#channelId").bind('input propertychange', function() {
+            var value = $(this).val();
+            aidrivingPlayer.config.channelId = value
+        })
+        $("#start_time").bind('input propertychange', function() {
+            var value = $(this).val();
+            aidrivingPlayer.config.startTime = value
+            aidrivingPlayer.config.playStartTime = value
+        })
+        $("#end_time").bind('input propertychange', function() {
+            var value = $(this).val();
+            aidrivingPlayer.config.endTime = value
+            aidrivingPlayer.config.playEndTime = value
+        })
 
         function getTime() {
             var date = new Date()
@@ -178,6 +219,8 @@
             }
             return year + '-' + handleValue(mounth) + '-' + handleValue(day) + ' ' + handleValue(hour) + ':' + handleValue(min) + ':' + handleValue(sec)
         }
+
+        
     </script>
 </body>
 </html>

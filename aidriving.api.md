@@ -60,6 +60,12 @@ API 接口通过 https 方式对外提供接口服务，遵循 API 接口规范�
 ``` html
     <script src='./aidriving_video.js'></script>
 ```
+### html
+- 创建一个div，class名为 `video-content`
+
+``` html
+<div class='video-content'></div>
+```
 
 ## 接口说明
 ### aidriving_video.js
@@ -67,113 +73,102 @@ API 接口通过 https 方式对外提供接口服务，遵循 API 接口规范�
 ### aidrivingPlayer
 
 对象属性：
-- [autoCloseTime](#autoCloseTime)
-- [sessionId](#sessionId)
-- [simNo](#simNo)
-- [vehicleNo](#vehicleNo)
-- [playType](#playType)
-- [token](#token)
-- [userId](#userId)
-- [url](#url)
-- [videoUrl](#videoUrl)
-- [stopUrl](#stopUrl)
-- [bateUrl](#bateUrl)
-- [getVehicleNoUrl](#getVehicleNoUrl)
-- [playbackTimelineUrl](#playbackTimelineUrl)
-- [playbackUrl](#playbackUrl)
+- [config](#config)
 
 对象方法：
-- [getVehicleNo()][#]
-- [getVideoUrl()][#]
-
-### videoPler
-
-构造函数：
-- [new videoPlayr()](#new-videoPlayr)
-
-实例属性：
-- [videoPlayr.sim](#videoplyersim)
-- [videoPlayr.passageway](#)
-- [videoPlayr.playType](#)
-
-实例方法
-- [videoPlayr.createElement](#)
-- [videoPlayr.play](#)
-- [videoPlayr.pause](#)
-- [videoPlayr.destroy](#)
-- [videoPlayr.showLoading](#)
-- [videoPlayr.hideLoading](#)
-- [videoPlayr.showMask](#)
-- [videoPlayr.hideMask](#)
-- [videoPlayr.timeout](#)
-- [videoPlayr.cleanTimeout](#)
-- [videoPlayr.screenshots](#)
-- [videoPlayr.fullScreen](#)
-- [videoPlayr.exitFullscreen](#)
-- [videoPlayr.getVideoUrl](#)
-- [videoPlayr.destroyCallback](#)
-- [videoPlayr.playTimeout](#)
-
-### new videoPlyer()
-```js
-let videoPlyer = new videoPlayer(config)
-```
+- [init()](#)
+- [showTip()](#)
+- [cleanVideo()](#)
+- [openAutoClose()](#)
+- [updateAutoCloseTime()](#)
+- [playAll()](#)
+- [destroyAll()](#)
+- [updatePassageway()](#)
 
 根据`config`创建`byskplayer`实例
+
+
+
+### aidrivingPlayer.init(config)
+视频初始化
+``` js
+    aidrivingPlayer.init(config)
+```
 
 **config**
 
 | 参数名称 |  类型 | 简介 |
 | ------- | ----- | ---- |
-| sim | `string` | SIM卡号 |
-| playType | `string` | 播放类型： `broadcast`：视频直播， `playback` : 视频回放 |
-| passageway| `number` | 通道号 |
-| getVideoUrl | `function(id) => void` | 获取视频url 回调函数 |
-| destroyCallback | `function(id) => void` | 销毁视频对象回调函数|
-| playTimeout | `function(id) => void` | 视频播放请求超时回调|
+| `sim` | `string` | SIM卡号 |
+| `sessionId` | `string` | session |
+| `token` | `string` | token |
+| `playType` | `string` | 播放类型 `broadcast`：视频直播， `playback` : 视频回放 |
+| `passageway`| `number` | 通道数 最大16，最小1|
+| `streamType`| `number` | 码流类型0：主码流，1：子码流 默认1 |
+| `mediaType`| `number` | 通道号 |
+| `storeType`| `number` | 存储器类型0：所有存储器，1：主存储器，2：灾备存储器默认0 |
+| `dataType`| `number` | 媒体类型0：音视频，1：音频，2：视频，3：视频或音视频 |
+| `playBackType`| `number` | 回放类型，0正常回放，1快进回放，2快退回放，默认0 |
+| `times`| `number` | 快进或快退方式，回放方式为1或者2的时候有效，否则置0，0.无效，1.一倍，2.两倍，3.四倍，4.八倍，5.十六倍，默认0 |
+| `startTime`| `string` | 请求历史视频开始时间 |
+| `endTime`| `string` | 请求历史视频结束时间 |
+| `playStartTime`| `string` | 回放播放开始时间 |
+| `playEndTime`| `string` | 回放播放结束时间 |
+| `channelId`| `number` | 通道号 |
+| `serverUrl`| `string` | 服务地址 |
+| `getVideoUrl`| `string` | 获取视频地址请求 |
+| `stopVideoUrl`| `string` | 停止视频请求 |
+| `bateUrl`| `string` | 直播心跳 |
+| `getVehicleNoUrl`| `string` | 获取车牌号 |
+| `playbackTimelineUrl`| `string` | 下发历史视频资源列表查询指令 |
+| `playbackUrl`| `string` | 下发远程回放指令 |
 
-### videoPlayr.createElement()
-
+### aidrivingPlayer.showTip(msg)
+文本提示
 ``` js
-let element = videoPlayer.createElement()
+    const msg = 'tip!'
+    aidrivingPlayer.showTip(msg)
 ```
-返回视频标签字符串
+| 参数名称 |  类型 | 简介 |
+| ------- | ----- | ---- |
+| `msg` | `string` | 提示信息 |
 
-### videoPlayr.play()
+### aidrivingPlayer.cleanVideo()
+清空`video-content` 下的视频元素
+``` js
+    aidrivingPlayer.cleanVideo()
+```
+### aidrivingPlayer.openAutoClose()
+开启自动关闭视频
+``` js
+    aidrivingPlayer.openAutoClose()
+```
+### aidrivingPlayer.updateAutoCloseTime(time)
+更新自动关闭视频时间
+``` js
+    const time = 5 // 单位分钟
+    aidrivingPlayer.updateAutoCloseTime(time)
+```
+| 参数名称 |  类型 | 简介 |
+| ------- | ----- | ---- |
+| `time` | `number` | 时间（分钟） |
 
-视频播放事件
-
-### videoPlayr.pause()
-视频暂停事件
-
-### videoPlayr.destroy()
-视频销毁事件
-
-### videoPlayr.showLoading()
-显示加载动画
-
-### videoPlayr.hideLoading()
-隐藏加载动画
-
-### videoPlayr.showMask()
-显示video背景图
-
-### videoPlayr.hideMask()
-隐藏video背景图
-
-### videoPlayr.timeout()
-启动计时器
-
-### videoPlayr.cleanTimeout()
-清除计时器
-
-### videoPlayr.screenshots()
-截屏事件
-
-### videoPlayr.fullScreen()
-全屏事件
-
-### videoPlayr.exitFullscreen()
-退出全屏事件
-
-
+### aidrivingPlayer.playAll()
+播放全部视频
+``` js
+    aidrivingPlayer.playAll()
+```
+### aidrivingPlayer.destroyAll()
+销毁全部视频
+``` js
+    aidrivingPlayer.destroyAll()
+```
+### aidrivingPlayer.updatePassageway(number)
+更换通道数
+``` js
+    const number = 4
+    aidrivingPlayer.updatePassageway(number)
+```
+| 参数名称 |  类型 | 简介 |
+| ------- | ----- | ---- |
+| `number` | `number` | 通道数 |
