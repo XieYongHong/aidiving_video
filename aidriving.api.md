@@ -3,7 +3,7 @@
  * @Author: xyh
  * @Date: 2020-05-14 12:29:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-19 13:30:34
+ * @LastEditTime: 2020-05-20 13:04:11
  -->
 # 天巡开放平台
 
@@ -54,18 +54,20 @@ API 接口通过 https 方式对外提供接口服务，遵循 API 接口规范�
 ```
 需要将css文件夹下的 名为`iconfont`的6个文件引入到`iconfont.css`同级目录下
 
+### html
+- 创建一个div，class名为 `video-content`
+
+``` html
+    <div class='video-content'></div>
+```
+
 ### JS引入
 
 - 下载直接引入：
 ``` html
     <script src='./aidriving_video.js'></script>
 ```
-### html
-- 创建一个div，class名为 `video-content`
 
-``` html
-<div class='video-content'></div>
-```
 
 ## 接口说明
 ### aidriving_video.js
@@ -86,8 +88,6 @@ API 接口通过 https 方式对外提供接口服务，遵循 API 接口规范�
 - [updatePassageway()](#)
 
 根据`config`创建`byskplayer`实例
-
-
 
 ### aidrivingPlayer.init(config)
 视频初始化

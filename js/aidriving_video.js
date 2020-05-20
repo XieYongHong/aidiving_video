@@ -339,7 +339,7 @@ var aidrivingPlayer = {
         dataType: 2,
         playBackType: 2,
         userId: '',
-        times: '',
+        times: 0,
         startTime: '',
         endTime: '',
         playStartTime: '',
@@ -466,7 +466,7 @@ var aidrivingPlayer = {
 
             this.config.sessionId = data.sessionId
 
-            if (videoList && urlList.length) {
+            if (videoList && videoList.length) {
                 videoList.forEach(item => {
                     var videoObj = this.videoList[0]
 
