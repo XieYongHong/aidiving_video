@@ -3,7 +3,7 @@
  * @Author: xyh
  * @Date: 2020-05-14 12:29:52
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-20 13:04:11
+ * @LastEditTime: 2020-05-21 12:30:45
  -->
 # 天巡开放平台
 
@@ -49,8 +49,8 @@ API 接口通过 https 方式对外提供接口服务，遵循 API 接口规范�
 
 - 下载直接引入：
 ``` html
-    <link rel="stylesheet" href="./css/iconfont.css">
-    <link rel="stylesheet" href="./css/aidriving_video.css">
+    <link rel="stylesheet" href="./iconfont.css">
+    <link rel="stylesheet" href="./aidriving_video.css">
 ```
 需要将css文件夹下的 名为`iconfont`的6个文件引入到`iconfont.css`同级目录下
 

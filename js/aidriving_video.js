@@ -1,4 +1,3 @@
-
 var videoPlayr = function (options) {
 
     this.sim = options.sim || ''
@@ -14,21 +13,6 @@ var videoPlayr = function (options) {
     this.playTimeout = options.playTimeout
 }
 
-videoPlayr.prototype.init = function () { // 初始化
-
-    window.onresize = function (e) { // 屏幕改变监听
-        if (!checkFull()) {
-            $('.iconun-full-screen').attr('title', '全屏')
-            $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
-        }
-    }
-
-    function checkFull() { // 判断是否全屏
-        var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
-        if (isFull === undefined) isFull = false;
-        return isFull;
-    }
-}
 videoPlayr.prototype.createElement = function () { // 创建video标签
     var _this = this
     var videoDOM = `<div class="video-body passageway-${this.passageway} video-${this.type}">
@@ -194,7 +178,7 @@ videoPlayr.prototype.showMask = function () { // 显示背景图
 videoPlayr.prototype.hideMask = function () { // 隐藏背景图
     $(this.videoClassName + ' .video-bgImg').hide()
 }
-videoPlayr.prototype.timeout = function () {  // 超时计时器
+videoPlayr.prototype.timeout = function () { // 超时计时器
     var _this = this
 
     this.cleanTimeout()
@@ -215,7 +199,7 @@ videoPlayr.prototype.timeout = function () {  // 超时计时器
         _this.destroy()
     }, 20000)
 }
-videoPlayr.prototype.cleanTimeout = function () {  // 清除超时计时器
+videoPlayr.prototype.cleanTimeout = function () { // 清除超时计时器
     if (this.timer) {
         window.clearTimeout(this.timer)
         this.timer = null
@@ -236,15 +220,15 @@ videoPlayr.prototype.screenshots = function (video) { // 截屏
     this.downloadImage(base64)
 }
 videoPlayr.prototype.downloadImage = function (base64) {
-    //设置下载图片的格式
-    var type = "jpeg";
-    //将canvas保存为图片
-    var imgData = base64.replace(this.imgType(type), "image/octet-stream");
+        //设置下载图片的格式
+        var type = "jpeg";
+        //将canvas保存为图片
+        var imgData = base64.replace(this.imgType(type), "image/octet-stream");
 
-    var filename = this.sim + "_" + this.getTime() + "." + type; //下载图片的文件名
+        var filename = this.sim + "_" + this.getTime() + "." + type; //下载图片的文件名
 
-    this.saveFile(imgData, filename);
-},
+        this.saveFile(imgData, filename);
+    },
     videoPlayr.prototype.updateVehicleNo = function (value) {
         $(this.videoClassName + ' .vehicle-number').text(value)
     },
@@ -288,29 +272,36 @@ videoPlayr.prototype.saveFile = function (data, fileName) {
     }
 }
 videoPlayr.prototype.fullScreen = function (element) { // 进入全屏
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
+    var requestMethod = element.requestFullScreen || //W3C
+        element.webkitRequestFullScreen || //FireFox
+        element.mozRequestFullScreen || //Chrome等
+        element.msRequestFullScreen; //IE11
+    if (requestMethod) {
+        requestMethod.call(element);
+    } else if (typeof window.ActiveXObject !== "undefined") { //for Internet Explorer
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
     }
 }
 videoPlayr.prototype.exitFullscreen = function () { // 退出全屏
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
+    // 判断各种浏览器，找到正确的方法
+    var exitMethod = document.exitFullscreen || //W3C
+        document.mozCancelFullScreen || //FireFox
+        document.webkitExitFullscreen || //Chrome等
+        document.webkitExitFullscreen; //IE11
+    if (exitMethod) {
+        exitMethod.call(document);
+    } else if (typeof window.ActiveXObject !== "undefined") { //for Internet Explorer
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
     }
 }
 videoPlayr.prototype.fullScreenChangeType = function (callback) {
-    var isFullscreen = $(this).hasClass('iconun-full-screen')
+    var isFullscreen = !!$('.iconun-full-screen')[0]
     if (isFullscreen) {
         $(this.videoClassName + ' .iconun-full-screen').attr('title', '全屏')
         $(this.videoClassName + ' .iconun-full-screen').attr('class', 'iconfont iconfull-screen')
@@ -383,7 +374,7 @@ var aidrivingPlayer = {
     getVideoUrl: function (ids) {
         var _ids = Array.isArray(ids) ? ids : [ids]
 
-        if(!this.config.simNo) {
+        if (!this.config.simNo) {
             alert('请输入SIM卡号')
             return
         }
@@ -534,7 +525,7 @@ var aidrivingPlayer = {
             return item.playStatus
         })
 
-        if(!arr.length) {
+        if (!arr.length) {
             this.cleanBate()
         }
     },
@@ -549,7 +540,6 @@ var aidrivingPlayer = {
                 destroyCallback: this.destroyCallback.bind(this),
                 playTimeout: this.playTimeout.bind(this)
             })
-            video.init()
             doms += video.createElement()
             this.videoList.push(video)
         }
@@ -578,7 +568,7 @@ var aidrivingPlayer = {
             }, 1000)
         }
     },
-    closeAutoClose: function () {// 关闭定时关闭视频
+    closeAutoClose: function () { // 关闭定时关闭视频
         if (this.autoCloseTimer) {
             window.clearInterval(this.autoCloseTimer)
             this.autoCloseTimer = null
@@ -630,7 +620,7 @@ var aidrivingPlayer = {
             url: url,
             contentType: 'application/json;charset-UTF-8',
             data: data ? JSON.stringify(data) : {},
-            error: function () { },
+            error: function () {},
             success: function (data) {
                 var code = data.code
                 if (code === 1000) {
@@ -648,3 +638,67 @@ var aidrivingPlayer = {
         })
     }
 }
+
+document.addEventListener("fullscreenchange", function () {
+
+    var isFull = document.fullscreenElement ||
+
+        document.msFullscreenElement ||
+
+        document.mozFullScreenElement ||
+
+        document.webkitFullscreenElement || false;
+        console.log(isFull)
+    if (!isFull) { // 退出全屏
+        $('.iconun-full-screen').attr('title', '全屏')
+        $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
+    }
+}, false);
+
+document.addEventListener("mozfullscreenchange", function () {
+
+    var isFull = document.fullscreenElement ||
+
+        document.msFullscreenElement ||
+
+        document.mozFullScreenElement ||
+
+        document.webkitFullscreenElement || false;
+        console.log(isFull)
+    if (!isFull) { // 退出全屏
+        $('.iconun-full-screen').attr('title', '全屏')
+        $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
+    }
+}, false);
+
+document.addEventListener("webkitfullscreenchange", function () {
+
+    var isFull = document.fullscreenElement ||
+
+        document.msFullscreenElement ||
+
+        document.mozFullScreenElement ||
+
+        document.webkitFullscreenElement || false;
+        console.log(isFull)
+    if (!isFull) { // 退出全屏
+        $('.iconun-full-screen').attr('title', '全屏')
+        $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
+    }
+}, false);
+
+document.addEventListener("msfullscreenchange", function () {
+
+    var isFull = document.fullscreenElement ||
+
+        document.msFullscreenElement ||
+
+        document.mozFullScreenElement ||
+
+        document.webkitFullscreenElement || false;
+        console.log(isFull)
+    if (!isFull) { // 退出全屏
+        $('.iconun-full-screen').attr('title', '全屏')
+        $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
+    }
+}, false);
