@@ -67,10 +67,10 @@ videoPlayr.prototype.tooBtnInit = function () { // 注册bar中的按钮事件
                     _this.exitFullscreen()
                 } else {
                     var dom = $('#tip_text_1')
-                    dom.show()
-                    setTimeout(function () {
-                        dom.hide()
-                    }, 1500)
+                    // dom.show()
+                    // setTimeout(function () {
+                    //     dom.hide()
+                    // }, 1500)
                     _this.fullScreen(videoBody)
                 }
                 _this.fullScreenChangeType()
@@ -367,7 +367,6 @@ var aidrivingPlayer = {
             simNo: this.config.simNo
         }
         this.ajax('POST', this.config.serverUrl + this.config.getVehicleNoUrl, config, function (data) {
-            console.log(data)
             $('.vehicle-number').text(data)
         })
     },
@@ -401,7 +400,6 @@ var aidrivingPlayer = {
             this.config.sessionId = data.sessionId
 
             if (videoList && videoList.length) {
-                console.log(this.videoList)
                 videoList.forEach(item => {
                     var videoObj = this.videoList.find(video => video.passageway === item.channelId)
 
@@ -500,7 +498,6 @@ var aidrivingPlayer = {
     },
     cleanBate: function () { // 关闭心跳
         if (this.bateTimer) {
-            console.log('清除心跳')
             window.clearInterval(this.bateTimer)
             this.bateTimer = null
         }
@@ -521,7 +518,6 @@ var aidrivingPlayer = {
     },
     cleanPassageway: function (ids) {
         var arr = this.videoList.filter(item => {
-            console.log(item)
             return item.playStatus
         })
 
@@ -560,7 +556,6 @@ var aidrivingPlayer = {
         if (this.autoCloseTime !== 0) {
             this.autoCloseTimer = setInterval(function () {
                 _this.autoCloseTimeAcc += 1
-                console.log(_this.autoCloseTimeAcc)
                 if (_this.autoCloseTimeAcc >= _this.autoCloseTime) {
                     _this.autoCloseTimeAcc = 0
                     _this.destroyAll()
@@ -639,7 +634,7 @@ var aidrivingPlayer = {
     }
 }
 
-document.addEventListener("fullscreenchange", function () {
+document.addEventListener("fullscreenchange", function (e) {
 
     var isFull = document.fullscreenElement ||
 
@@ -648,14 +643,13 @@ document.addEventListener("fullscreenchange", function () {
         document.mozFullScreenElement ||
 
         document.webkitFullscreenElement || false;
-        console.log(isFull)
-    if (!isFull) { // 退出全屏
+    if (!isFull && e.target.className.indexOf('video-body') != -1) { // 退出全屏
         $('.iconun-full-screen').attr('title', '全屏')
         $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
     }
 }, false);
 
-document.addEventListener("mozfullscreenchange", function () {
+document.addEventListener("mozfullscreenchange", function (e) {
 
     var isFull = document.fullscreenElement ||
 
@@ -664,14 +658,13 @@ document.addEventListener("mozfullscreenchange", function () {
         document.mozFullScreenElement ||
 
         document.webkitFullscreenElement || false;
-        console.log(isFull)
-    if (!isFull) { // 退出全屏
+    if (!isFull && e.target.className.indexOf('video-body') != -1) { // 退出全屏
         $('.iconun-full-screen').attr('title', '全屏')
         $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
     }
 }, false);
 
-document.addEventListener("webkitfullscreenchange", function () {
+document.addEventListener("webkitfullscreenchange", function (e) {
 
     var isFull = document.fullscreenElement ||
 
@@ -680,14 +673,13 @@ document.addEventListener("webkitfullscreenchange", function () {
         document.mozFullScreenElement ||
 
         document.webkitFullscreenElement || false;
-        console.log(isFull)
-    if (!isFull) { // 退出全屏
+    if (!isFull && e.target.className.indexOf('video-body') != -1) { // 退出全屏
         $('.iconun-full-screen').attr('title', '全屏')
         $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
     }
 }, false);
 
-document.addEventListener("msfullscreenchange", function () {
+document.addEventListener("msfullscreenchange", function (e) {
 
     var isFull = document.fullscreenElement ||
 
@@ -696,8 +688,7 @@ document.addEventListener("msfullscreenchange", function () {
         document.mozFullScreenElement ||
 
         document.webkitFullscreenElement || false;
-        console.log(isFull)
-    if (!isFull) { // 退出全屏
+    if (!isFull && e.target.className.indexOf('video-body') != -1) { // 退出全屏
         $('.iconun-full-screen').attr('title', '全屏')
         $('.iconun-full-screen').attr('class', 'iconfont iconfull-screen')
     }
